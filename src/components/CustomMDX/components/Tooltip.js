@@ -1,7 +1,12 @@
 "use client";
 
 import React from "react";
-import { useFloating, useHover, useInteractions } from "@floating-ui/react";
+import {
+  useFloating,
+  useFocus,
+  useHover,
+  useInteractions,
+} from "@floating-ui/react";
 
 export default function Tooltip({ children, text }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -19,14 +24,24 @@ export default function Tooltip({ children, text }) {
     },
   });
 
-  const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
+  const focus = useFocus(context, {
+    delay: {
+      open: 300,
+      close: 0,
+    },
+  });
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    hover,
+    focus,
+  ]);
 
   return (
     <>
       <button
         ref={refs.setReference}
         {...getReferenceProps()}
-        className="relative outline-none mdx-tooltip"
+        className="relative outline-none"
       >
         {children}
         <span className="relative text-xs text-neutral-500 font-semibold align-top">

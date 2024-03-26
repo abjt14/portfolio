@@ -22,19 +22,11 @@ article h6 {
 }
 
 article a {
-  @apply relative outline-none;
+  @apply outline-none underline underline-offset-4 decoration-clone decoration-neutral-400 dark:decoration-neutral-700 hover:decoration-neutral-600 dark:hover:decoration-neutral-500 transition-all duration-150;
 }
 
-article a::after {
-  @apply content-[""] absolute -bottom-0.5 left-0 h-0.5 w-full rounded-full bg-neutral-400 dark:bg-neutral-700 hover:bg-neutral-600 dark:hover:bg-neutral-500 transition-all duration-150 -z-10;
-}
-
-article a:focus-visible::after {
-  @apply h-1 bg-neutral-600 dark:bg-neutral-500;
-}
-
-article .mdx-tooltip:focus-visible::after {
-  @apply content-[""] absolute bottom-0.5 left-0 h-1 w-full rounded-full bg-neutral-600 dark:bg-neutral-500 transition-all duration-150 -z-10;
+article a:focus-visible {
+  @apply decoration-neutral-600 dark:decoration-neutral-500;
 }
 
 article ul,
