@@ -1,0 +1,77 @@
+The concept of "hold to confirm" has been around for a few years. While it is rare to find <Link href="https://twitter.com/samuelkraft/status/1721895617952350490" target="_blank">one</Link> in the wild, I believe we've been privy to "more than just a tap" user interfaces for a while now. Whether it is "slide to unlock", "pinch to zoom", or "pull to refresh", the way we interact with touch screen devices has been evolving over the years.
+
+Moving onto this experiment, one of my favourite parts of this experiment was animating the stars. A simple yet elegant feedback to the user, notifying that the action has been completed. I used the star SVG from <Link href="https://heroicons.com/" target="_blank">heroicons</Link>, a project by the makers of Tailwind CSS.
+
+```jsx
+function AnimatedStars({ count = 25 }) {
+  return [...Array(count)].map((_, index) => {
+    return (
+      <motion.div
+        key={"star-" + index}
+        className="absolute top-0"
+        animate={{
+          opacity: [0, 1, 0],
+          rotate: [0, randomNumber(-360, 360)],
+          y: [0, randomNumber(-100, -200)],
+          x: [0, randomNumber(-100, 100)],
+        }}
+        transition={{
+          ease: cubicBezier(0.16, 1, 0.3, 1),
+          duration: 1.25,
+          delay: Math.random() * 0.5,
+        }}
+        style={{
+          transformOrigin: "center center",
+          left: "50%",
+        }}
+      >
+        <StarSVG />
+      </motion.div>
+    );
+  });
+}
+```
+
+Another intricate detail that makes gives the effect that finishing touch is the letters animating in to change the text from "Submit" to "Submitted". The subtle spring animation makes the effect a lot more appealing.
+
+```jsx
+const layoutTransition = {
+  type: "spring",
+  damping: 20,
+  stiffness: 350,
+};
+
+function ButtonTextAnimation({ trigger }) {
+  return (
+    <motion.div
+      className="flex px-2"
+      layout="position"
+      transition={layoutTransition}
+    >
+      <span>Submit</span>
+      {trigger
+        ? ["t", "e", "d"].map((char, index) => {
+            return (
+              <motion.span
+                key={char + index}
+                layout={true}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  ...layoutTransition,
+                  delay: 0.1 * index,
+                }}
+              >
+                {char}
+              </motion.span>
+            );
+          })
+        : null}
+    </motion.div>
+  );
+}
+```
+
+Now of course there are concepts that sound exciting but don't work well in practice. Some of you may remember Sony Xperia Sola's <Link href="https://www.theverge.com/2012/3/14/2871193/sony-xperia-sola-floating-touch-hover-event-screen-technology" target="_blank">floating touch</Link>.
+
+However, I feel that with the advent of <Link href="https://dribbble.com/tags/spatial-ui" target="_blank">Spatial UI</Link>, which will be popularized by the upcoming VR and AR devices, such interactions will become more common. I'm excited to see what designers come up with new ways to help us interact with the rapidly evolving digital world.

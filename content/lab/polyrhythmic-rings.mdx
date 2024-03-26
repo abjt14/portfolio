@@ -1,0 +1,57 @@
+In the pursuit of bringing my ideas to life and continuing to grow my front-end skills, my next step was to explore Scalable Vector Graphics.
+
+Inpired by <Link href="https://www.youtube.com/@Hyperplexed" target="_blank" aria-label="hyperplexed's youtube channel">Hyperplexed's</Link> video on Youtube, I built a similar experience, using SVGs instead of his approach that used an HTML Canvas.
+
+In an attempt to explore the grayscale pallete I enjoy, I used a color wheel as the background for the rings. This allowed me to add a subtle pop of color to the visuals of the animation.
+
+<MDXVideo
+  src="/lab/polyrhythmic-rings/videos/rings.mp4"
+  alt="color wheel svg being used as a shared stroke for the rings"
+  width={540}
+  height={540}
+/>
+
+With React managing the state and Framer Motion handling the smooth transitions, my main focus was to visualize the calming sounds through a familiar medium like strings. More specifically, <Tooltip text="Stringed musical instruments.">chordophones</Tooltip>.
+
+<MDXVideo
+  src="/lab/polyrhythmic-rings/videos/strings.mp4"
+  alt="the strings getting distorted by the filter"
+  width={1262}
+  height={540}
+/>
+
+Each chords is an SVG `<Line />` with a filter that uses an `<feTurbulence />` and an `<feDisplacementMap />` that is triggered when the white circles, lets call them "beads", hit the strings.
+
+```jsx title="jsx"
+<feTurbulence
+  type="fractalNoise"
+  baseFrequency={baseFrequencyByIndex}
+  numOctaves="1"
+  result="warp"
+  colorInterpolationFilters="sRGB"
+/>
+<feDisplacementMap
+  xChannelSelector="R"
+  yChannelSelector="G"
+  scale="0"
+  in="SourceGraphic"
+  in2="warp"
+  colorInterpolationFilters="sRGB"
+>
+  <animate
+    attributeName="scale"
+    values="0; 8; 4; 0;"
+    dur=".4s"
+    begin=".1s"
+    colorInterpolationFilters="sRGB"
+  />
+</feDisplacementMap>
+```
+
+The user sees that when a bead hits a string, it causes the string to vibrate. The code however, works by simply triggering the filter everytime the bead's rotation value touches a multiple of `180°`.
+
+Moreover, instead of calculating the position of the beads for both the `x` and `y` coordinates, I chose a simpler and more manageable approach of setting the origin of transform for the beads to the center of the SVG and rotating them around the center.
+
+The most challenging part of the project was improving performance and dealing with cross-browser compatibility. Despite the major improvements I made over the course of the project's development through bug fixing, rewriting components, and rigorous testing, I felt the need to provide a <Tooltip text="A mechanism used to shut down or disable a device or program.">killswitch</Tooltip> that allows the user to disable some of the performance heavy animations.
+
+I will be exploring Scalable Vector Graphics a lot more in the future, and as I've recently gotten a taste for GLSL shaders as well, the possibilities are endless.

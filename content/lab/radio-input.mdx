@@ -1,0 +1,111 @@
+One of the most unexplored form inputs in UI design is the radio input. Why limit ourselves to simple circles and a dot? So here's an elegant, sleek, and modern radio input. My love for grayscale, glares, and gradients is evident in this design.
+
+One of the creative challenges I faced was building the background pattern. The effect starts with a dot pattern made using a `<circle />` element.
+
+```jsx
+<pattern
+  id="dots-pattern"
+  width="20"
+  height="20"
+  patternUnits="userSpaceOnUse"
+>
+  <circle cx="1" cy="1" r="1" fill="white" />
+</pattern>
+<mask id="mask-dots">
+  <rect width="100%" height="100%" fill="url(#dots-pattern)" />
+</mask>
+```
+
+We then build a `<linearGradient />` who's `stop-color` values are manipulated using Framer Motion based on the selected option.
+
+```jsx
+const motionTransition = {
+  type: "spring",
+  stiffness: 75,
+  damping: 25,
+};
+<linearGradient id="linear-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+  <motion.stop
+    stopColor="rgba(250, 250, 250, 0.06125)"
+    initial={false}
+    animate={{
+      offset: gradientTop - gradientHeight + "%",
+    }}
+    transition={motionTransition}
+  />
+  <motion.stop
+    stopColor="rgba(250, 250, 250, 0.5)"
+    initial={false}
+    animate={{
+      offset: gradientTop + "%",
+    }}
+    transition={motionTransition}
+  />
+  <motion.stop
+    stopColor="rgba(250, 250, 250, 0.06125)"
+    initial={false}
+    animate={{
+      offset: gradientTop + gradientHeight + "%",
+    }}
+    transition={motionTransition}
+  />
+</linearGradient>;
+```
+
+We then create a `<mask />` using these two to make the dots brighter when the linear gradient's position is near them. It works by making parts of the `<rect />` be transparent where the "dots pattern" is black. The remaining parts are the white dots themselves, which show the linear gradient behind them being used as a fill.
+
+```jsx
+<mask id="mask-dots-on-linear">
+  <rect
+    width="100%"
+    height="100%"
+    fill="url(#linear-gradient)"
+    mask="url(#mask-dots)"
+  />
+</mask>
+```
+
+<MDXImage
+  src="/lab/radio-input/images/dots-linear-comparison.png"
+  alt="combining the dots pattern and the linear gradient"
+  width={1087}
+  height={721}
+  wrapperClassName="!mt-2"
+/>
+
+While this by itself achives the effect we were going for, the finishing touch comes with the use of a `<radialGradient />` on which the mask will be used over. This gives the highlighted area a more organic and dynamic shape, giving off the impression of a light source.
+
+```jsx
+<radialGradient
+  id="radial-gradient"
+  cx="50%"
+  cy="50%"
+  r="40%"
+  fx="50%"
+  fy="50%"
+>
+  <stop offset="0%" stopColor="white" />
+  <stop offset="100%" stopColor="rgba(250, 250, 250, 0.125)" />
+</radialGradient>
+```
+
+And then finally applying the radial gradient as a `fill` to our main `<rect />`, and using the mask we created earlier, to achieve the final effect.
+
+```jsx
+<rect
+  width="100%"
+  height="100%"
+  fill="url(#radial-gradient)"
+  mask="url(#mask-dots-on-linear)"
+/>
+```
+
+<MDXImage
+  src="/lab/radio-input/images/dots-linear-radial-comparison.png"
+  alt="combining our effect and the radial gradient"
+  width={1086}
+  height={720}
+  wrapperClassName="mt-2"
+/>
+
+There's something beautiful about exploring unchartered territories, even for something as simple as a radio input. It's a reminder that there's always opportunities to innovate and create something new.
