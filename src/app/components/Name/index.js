@@ -17,7 +17,7 @@ export default function Name() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-auto z-10 pointer-events-none fill-neutral-950 dark:fill-neutral-50",
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-auto z-10 pointer-events-none fill-neutral-950 dark:fill-neutral-50 animation-delay-1000",
           "block sm:hidden",
           isLoaded && "animate-fade-out-300"
         )}
@@ -30,7 +30,7 @@ export default function Name() {
         viewBox="0 0 2304 384"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-auto z-10 pointer-events-none fill-neutral-950 dark:fill-neutral-50",
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-auto z-10 pointer-events-none fill-neutral-950 dark:fill-neutral-50 animation-delay-1000",
           "hidden sm:block",
           isLoaded && "animate-fade-out-300"
         )}

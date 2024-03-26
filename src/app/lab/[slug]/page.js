@@ -189,12 +189,12 @@ function PreviousNextSection({ previousExperiment, nextExperiment }) {
 
 function PointerDeviceWarning() {
   return (
-    <div className="flex justify-start items-center gap-1 sm:hidden w-full bg-red-600 bg-opacity-25 text-neutral-500 dark:text-neutral-400 text-sm p-2 rounded-md">
+    <div className="flex justify-start items-center gap-1 sm:hidden w-full bg-yellow-400 bg-opacity-25 dark:bg-yellow-700 dark:bg-opacity-20 border border-amber-700 border-opacity-15 text-yellow-700 dark:text-yellow-500 text-sm p-2 rounded-md">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        strokeWidth={1.5}
+        strokeWidth={1.25}
         stroke="currentColor"
         className="size-5"
       >
