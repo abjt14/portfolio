@@ -1,0 +1,382 @@
+.wrapper {
+  position: relative;
+  padding: 0.125rem;
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 28rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(64, 64, 64);
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
+    drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+}
+
+:global([data-color-theme="light"]) .wrapper {
+  filter: drop-shadow(0 4px 3px rgb(255 255 255 / 0.07))
+    drop-shadow(0 2px 2px rgb(255 255 255 / 0.06));
+}
+
+.beam {
+  position: relative;
+  height: 100%;
+  border-radius: 9999px;
+  background-color: rgb(250, 250, 250);
+  background: linear-gradient(
+    90deg,
+    rgba(180, 180, 180, 1) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  width: 0%;
+  box-shadow: 0 0 0 0 rgba(180, 180, 180, 0.5);
+  animation: beam-main 5s ease-out infinite,
+    beam-shadow-flicker-dark 1s linear infinite;
+}
+
+:global([data-color-theme="light"]) .beam {
+  background-color: rgb(5, 5, 5);
+  background: linear-gradient(
+    90deg,
+    rgba(75, 75, 75, 1) 60%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  animation: beam-main 5s ease-out infinite,
+    beam-shadow-flicker-light 1s linear infinite;
+}
+
+.beam::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 0.5rem);
+  width: 1.75rem;
+  height: 1.75rem;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 20%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transform: translate(-50%, -50%);
+  filter: blur(1.5rem);
+  opacity: 0;
+  animation: beam-after-flicker 0.5s linear infinite;
+}
+
+:global([data-color-theme="light"]) .beam::after {
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes beam-main {
+  0% {
+    width: 0%;
+  }
+  5% {
+    width: 10%;
+  }
+  7.5% {
+    width: 15%;
+  }
+  15% {
+    width: 30%;
+  }
+  17.5% {
+    width: 35%;
+  }
+  19% {
+    width: 40%;
+  }
+  30% {
+    width: 45%;
+  }
+  35% {
+    width: 50%;
+  }
+  40% {
+    width: 55%;
+  }
+  42.5% {
+    width: 60%;
+  }
+  45% {
+    width: 65%;
+  }
+  50% {
+    width: 70%;
+  }
+  60% {
+    width: 75%;
+  }
+  62.5% {
+    width: 77.5%;
+  }
+  67.5% {
+    width: 80%;
+  }
+  75% {
+    width: 85%;
+  }
+  85% {
+    width: 90%;
+  }
+  87.50% {
+    width: 92.5%;
+  }
+  90% {
+    width: 95%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes beam-shadow-flicker-dark {
+  0% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 2px rgba(180, 180, 180, 0.5);
+  }
+  5% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px 3px rgba(180, 180, 180, 0.55);
+  }
+  7.5% {
+    opacity: 1;
+    box-shadow: 0 0 12px 1px rgba(180, 180, 180, 0.45);
+  }
+  15% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px 2px rgba(180, 180, 180, 0.5);
+  }
+  17.5% {
+    opacity: 0.95;
+    box-shadow: 0 0 12px 3px rgba(180, 180, 180, 0.525);
+  }
+  19% {
+    opacity: 0.86;
+    box-shadow: 0 0 12px 2.5px rgba(180, 180, 180, 0.53);
+  }
+  30% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 1px rgba(180, 180, 180, 0.425);
+  }
+  35% {
+    opacity: 1;
+    box-shadow: 0 0 12px 3px rgba(180, 180, 180, 0.5);
+  }
+  40% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 2.5px rgba(180, 180, 180, 0.45);
+  }
+  42.5% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 1px rgba(180, 180, 180, 0.55);
+  }
+  45% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 2px rgba(180, 180, 180, 0.5);
+  }
+  50% {
+    opacity: 0.95;
+    box-shadow: 0 0 12px 3px rgba(180, 180, 180, 0.575);
+  }
+  60% {
+    opacity: 75;
+    box-shadow: 0 0 12px 2px rgba(180, 180, 180, 0.5);
+  }
+  62.5% {
+    opacity: 1;
+    box-shadow: 0 0 12px 1px rgba(180, 180, 180, 0.45);
+  }
+  67.5% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px 2.5px rgba(180, 180, 180, 0.5);
+  }
+  75% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 1px rgba(180, 180, 180, 0.45);
+  }
+  85% {
+    opacity: 0.85;
+    box-shadow: 0 0 12px 1.5px rgba(180, 180, 180, 0.425);
+  }
+  87.50% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 3px rgba(180, 180, 180, 0.55);
+  }
+  90% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 2px rgba(180, 180, 180, 0.45);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 12px 2px rgba(180, 180, 180, 0.5);
+  }
+}
+
+@keyframes beam-shadow-flicker-light {
+  0% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.5);
+  }
+  5% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.55);
+  }
+  7.5% {
+    opacity: 1;
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.45);
+  }
+  15% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.5);
+  }
+  17.5% {
+    opacity: 0.95;
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.525);
+  }
+  19% {
+    opacity: 0.86;
+    box-shadow: 0 0 12px 2.5px rgba(0, 0, 0, 0.53);
+  }
+  30% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.425);
+  }
+  35% {
+    opacity: 1;
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.5);
+  }
+  40% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 2.5px rgba(0, 0, 0, 0.45);
+  }
+  42.5% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.55);
+  }
+  45% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    opacity: 0.95;
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.575);
+  }
+  60% {
+    opacity: 75;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.5);
+  }
+  62.5% {
+    opacity: 1;
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.45);
+  }
+  67.5% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px 2.5px rgba(0, 0, 0, 0.5);
+  }
+  75% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.45);
+  }
+  85% {
+    opacity: 0.85;
+    box-shadow: 0 0 12px 1.5px rgba(0, 0, 0, 0.425);
+  }
+  87.50% {
+    opacity: 0.75;
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.55);
+  }
+  90% {
+    opacity: 0.9;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.45);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes beam-after-flicker {
+  0% {
+    filter: blur(1.5rem);
+    opacity: 0.75;
+  }
+  5% {
+    filter: blur(1.4rem);
+    opacity: 0.8;
+  }
+  7.5% {
+    filter: blur(1.425rem);
+    opacity: 1;
+  }
+  15% {
+    filter: blur(1.45rem);
+    opacity: 0.8;
+  }
+  17.5% {
+    filter: blur(1.475rem);
+    opacity: 0.95;
+  }
+  19% {
+    filter: blur(1.4rem);
+    opacity: 0.86;
+  }
+  30% {
+    filter: blur(1.6rem);
+    opacity: 0.75;
+  }
+  35% {
+    filter: blur(1.55rem);
+    opacity: 1;
+  }
+  40% {
+    filter: blur(1.45rem);
+    opacity: 0.9;
+  }
+  42.5% {
+    filter: blur(1.55rem);
+    opacity: 0.75;
+  }
+  45% {
+    filter: blur(1.4rem);
+    opacity: 0.9;
+  }
+  50% {
+    filter: blur(1.45rem);
+    opacity: 0.95;
+  }
+  60% {
+    filter: blur(1.55rem);
+    opacity: 75;
+  }
+  62.5% {
+    filter: blur(1.55rem);
+    opacity: 1;
+  }
+  67.5% {
+    filter: blur(1.5rem);
+    opacity: 0.8;
+  }
+  75% {
+    filter: blur(1.525rem);
+    opacity: 0.9;
+  }
+  85% {
+    filter: blur(1.4rem);
+    opacity: 0.85;
+  }
+  87.50% {
+    filter: blur(1.5rem);
+    opacity: 0.75;
+  }
+  90% {
+    filter: blur(1.4rem);
+    opacity: 0.9;
+  }
+  100% {
+    filter: blur(1.5rem);
+    opacity: 1;
+  }
+}
