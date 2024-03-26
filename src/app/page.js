@@ -6,7 +6,7 @@ import MobileSocialLink from "@/components/MobileSocialLink";
 
 export default function Home() {
   return (
-    <main className="relative min-h-svh flex justify-center w-full items-start sm:items-center lg:items-start pt-14 sm:pt-0 lg:pt-[7.75rem] pb-28 sm:pb-16 lg:pb-0 px-4 sm:px-8 md:px-20 lg:px-0">
+    <main className="relative min-h-svh flex justify-center w-full items-start sm:items-center lg:items-start pt-14 sm:pt-0 lg:pt-[6.75rem] pb-28 sm:pb-16 lg:pb-0 px-4 sm:px-8 md:px-20 lg:px-0">
       <div className="relative h-full w-full max-w-screen-md flex flex-col justify-start items-center gap-0">
         <div className="h-32 w-full flex justify-between items-center">
           <div className="hidden sm:block h-full w-32 p-0.5 relative">
