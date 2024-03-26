@@ -28,7 +28,7 @@ const components = {
 
 function getPost(slug, type) {
   const markdownFile = fs.readFileSync(
-    path.join(`content/${type}/`, slug + ".mdx"),
+    path.join(process.cwd(), `content/${type}/`, slug + ".mdx"),
     "utf-8"
   );
   const { frontMatter, content } = matter(markdownFile);
