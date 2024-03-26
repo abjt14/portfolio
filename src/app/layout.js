@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import { cookies } from "next/headers";
 import ThemeProvider from "@/context/ThemeProvider";
 import SoundProvider from "@/context/SoundProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: {
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
             {children}
           </SoundProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

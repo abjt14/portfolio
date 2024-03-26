@@ -11,6 +11,7 @@
   "dependencies": {
     "@floating-ui/react": "^0.26.9",
     "@uidotdev/usehooks": "^2.4.1",
+    "@vercel/speed-insights": "^1.0.10",
     "bright": "^0.8.5",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
