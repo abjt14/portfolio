@@ -23,13 +23,7 @@ export const data = {
         "Built a PDF to HTML canvas converter using JavaScript and Shell Scripting to import and export design files on the browser.",
         "Implemented API Integration for data storage, social media interaction, text sentimental analysis, and stock image services.",
       ],
-      technologies: [
-        "Laravel",
-        "MySQL",
-        "FabricJS",
-        "REST API",
-        "Shell Scripting",
-      ],
+      technologies: ["Laravel", "MySQL", "FabricJS", "Shell Scripting"],
     },
   ],
   education: [
