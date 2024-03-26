@@ -18,21 +18,23 @@ export default function ThemeControl() {
     volume: 0.5,
   });
 
+  function handleClick() {
+    handleChange();
+    if (soundEnabled) {
+      if (theme === "dark") {
+        playSwitchOff();
+      } else {
+        playSwitchOn();
+      }
+    }
+  }
+
   return (
     <div className="bg-neutral-200 dark:bg-neutral-800 p-px rounded-full relative shadow-sm shadow-neutral-400 dark:shadow-black z-0 shrink-0">
       <button
         className="bg-gradient-to-tl from-neutral-50 dark:from-neutral-925 via-neutral-200 dark:via-neutral-900 to-neutral-50 dark:to-neutral-925 p-2 rounded-full relative z-20 group  outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
         aria-label="Theme Control"
-        onClick={() => {
-          handleChange();
-          if (soundEnabled) {
-            if (theme === "dark") {
-              playSwitchOff();
-            } else {
-              playSwitchOn();
-            }
-          }
-        }}
+        onClick={handleClick}
       >
         <ThemeIcon theme={theme} />
       </button>
