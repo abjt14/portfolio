@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function DownloadButton() {
   return (
-    <Link
+    <a
       href="/resume.pdf"
       target="_blank"
       className=" bg-neutral-200 dark:bg-neutral-800 p-px rounded-full relative shadow-sm shadow-neutral-400 dark:shadow-black group outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
@@ -29,7 +29,7 @@ export default function DownloadButton() {
         <DownloadIcon />
       </div>
       <div className="absolute top-0 left-0 h-full w-full rounded-full bg-gradient-to-br from-transparent from-30% via-neutral-300 dark:via-neutral-750 to-60% to-transparent z-10" />
-    </Link>
+    </a>
   );
 }
 
