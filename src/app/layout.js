@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import { cookies } from "next/headers";
 import ThemeProvider from "@/context/ThemeProvider";
 import SoundProvider from "@/context/SoundProvider";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
           </SoundProvider>
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
