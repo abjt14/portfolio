@@ -26,7 +26,7 @@ export const metadata = {
         url: "https://abjt.dev/og/og-medium.png",
         alt: "abjt . web developer . digital artist",
         width: 1440,
-        height: 820,
+        height: 810,
       },
     ],
   },
