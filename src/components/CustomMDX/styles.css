@@ -1,0 +1,81 @@
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  @apply font-semibold mt-6 text-neutral-950 dark:text-neutral-200;
+}
+
+article h1 {
+  @apply text-xl;
+}
+article h2 {
+  @apply text-lg;
+}
+
+article h3,
+article h4,
+article h5,
+article h6 {
+  @apply text-base;
+}
+
+article a {
+  @apply relative outline-none;
+}
+
+article a::after {
+  @apply content-[""] absolute -bottom-0.5 left-0 h-0.5 w-full rounded-full bg-neutral-400 dark:bg-neutral-700 hover:bg-neutral-600 dark:hover:bg-neutral-500 transition-all duration-150 -z-10;
+}
+
+article a:focus-visible::after {
+  @apply h-1 bg-neutral-600 dark:bg-neutral-500;
+}
+
+article .mdx-tooltip:focus-visible::after {
+  @apply content-[""] absolute bottom-0.5 left-0 h-1 w-full rounded-full bg-neutral-600 dark:bg-neutral-500 transition-all duration-150 -z-10;
+}
+
+article ul,
+article ol {
+  @apply my-1 pl-6;
+}
+
+article ul {
+  @apply list-disc;
+}
+
+article ol {
+  counter-reset: mdx-list-counter;
+}
+
+article ul li {
+  @apply pl-1;
+}
+
+article ol li {
+  counter-increment: mdx-list-counter;
+  @apply pl-1;
+}
+
+article ul li::marker,
+article ol li::marker {
+  @apply text-neutral-500;
+}
+
+article ol li::marker {
+  content: counter(mdx-list-counter) ". ";
+}
+
+article p code {
+  @apply bg-neutral-300 dark:bg-neutral-800 p-1 rounded-md text-xs font-geistmono font-medium break-keep box-decoration-clone;
+}
+
+article pre {
+  @apply !bg-neutral-150 dark:!bg-neutral-900 rounded-xl border border-neutral-250 dark:border-neutral-850;
+}
+
+article pre code {
+  @apply text-sm font-geistmono;
+}
