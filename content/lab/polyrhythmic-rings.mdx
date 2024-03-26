@@ -2,7 +2,7 @@ In the pursuit of bringing my ideas to life and continuing to grow my front-end 
 
 Inpired by <Link href="https://www.youtube.com/@Hyperplexed" target="_blank" aria-label="hyperplexed's youtube channel">Hyperplexed's</Link> video on Youtube, I built a similar experience, using SVGs instead of his approach that used an HTML Canvas.
 
-In an attempt to explore the grayscale pallete I enjoy, I used a color wheel as the background for the rings. This allowed me to add a subtle pop of color to the visuals of the animation.
+In an attempt to explore beyond the grayscale pallete I generally enjoy, I used a color wheel as the background for the rings. This allowed me to add a subtle pop of color to the visuals of the animation.
 
 <MDXVideo
   src="/lab/polyrhythmic-rings/videos/rings.mp4"
@@ -50,7 +50,7 @@ Each chords is an SVG `<Line />` with a filter that uses an `<feTurbulence />` a
 
 The user sees that when a bead hits a string, it causes the string to vibrate. The code however, works by simply triggering the filter everytime the bead's rotation value touches a multiple of `180°`.
 
-Moreover, instead of calculating the position of the beads for both the `x` and `y` coordinates, I chose a simpler and more manageable approach of setting the origin of transform for the beads to the center of the SVG and rotating them around the center.
+Moreover, instead of calculating the position of the beads for both the `x` and `y` coordinates, I chose a simpler and more manageable approach of setting the origin of transform for the beads to the center of the SVG and rotating them around that center.
 
 The most challenging part of the project was improving performance and dealing with cross-browser compatibility. Despite the major improvements I made over the course of the project's development through bug fixing, rewriting components, and rigorous testing, I felt the need to provide a <Tooltip text="A mechanism used to shut down or disable a device or program.">killswitch</Tooltip> that allows the user to disable some of the performance heavy animations.
 

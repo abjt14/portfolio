@@ -52,7 +52,7 @@ const motionTransition = {
 </linearGradient>;
 ```
 
-We then create a `<mask />` using these two to make the dots brighter when the linear gradient's position is near them. It works by making parts of the `<rect />` be transparent where the "dots pattern" is black. The remaining parts are the white dots themselves, which show the linear gradient behind them being used as a fill.
+Putting them together, we create a `<mask />` using these two to make the dots brighter when the linear gradient's position is near them. It works by making parts of the `<rect />` be transparent where the "dots pattern" is black. The remaining parts are the white dots themselves, which show the linear gradient behind them being used as a fill.
 
 ```jsx
 <mask id="mask-dots-on-linear">
@@ -89,7 +89,7 @@ While this by itself achives the effect we were going for, the finishing touch c
 </radialGradient>
 ```
 
-And then finally applying the radial gradient as a `fill` to our main `<rect />`, and using the mask we created earlier, to achieve the final effect.
+And now we finally apply the radial gradient as a `fill` to our main `<rect />`, and use the mask we created earlier, to achieve the final effect.
 
 ```jsx
 <rect

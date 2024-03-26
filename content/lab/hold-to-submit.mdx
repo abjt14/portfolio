@@ -1,6 +1,6 @@
 The concept of "hold to confirm" has been around for a few years. While it is rare to find <Link href="https://twitter.com/samuelkraft/status/1721895617952350490" target="_blank">one</Link> in the wild, I believe we've been privy to "more than just a tap" user interfaces for a while now. Whether it is "slide to unlock", "pinch to zoom", or "pull to refresh", the way we interact with touch screen devices has been evolving over the years.
 
-Moving onto this experiment, one of my favourite parts of this experiment was animating the stars. A simple yet elegant feedback to the user, notifying that the action has been completed. I used the star SVG from <Link href="https://heroicons.com/" target="_blank">heroicons</Link>, a project by the makers of Tailwind CSS.
+Moving on, one of my favourite parts of this experiment was animating the stars. A simple yet elegant feedback, notifying the user that the action has been completed. The star SVG is from <Link href="https://heroicons.com/" target="_blank">heroicons</Link>, a project by the makers of Tailwind CSS.
 
 ```jsx
 function AnimatedStars({ count = 25 }) {
@@ -32,7 +32,7 @@ function AnimatedStars({ count = 25 }) {
 }
 ```
 
-Another intricate detail that makes gives the effect that finishing touch is the letters animating in to change the text from "Submit" to "Submitted". The subtle spring animation makes the effect a lot more appealing.
+Another intricate detail that gives the effect that finishing touch is the letters animating in to change the text from "Submit" to "Submitted". The subtle spring animation makes the effect a lot more appealing.
 
 ```jsx
 const layoutTransition = {
@@ -74,4 +74,4 @@ function ButtonTextAnimation({ trigger }) {
 
 Now of course there are concepts that sound exciting but don't work well in practice. Some of you may remember Sony Xperia Sola's <Link href="https://www.theverge.com/2012/3/14/2871193/sony-xperia-sola-floating-touch-hover-event-screen-technology" target="_blank">floating touch</Link>.
 
-However, I feel that with the advent of <Link href="https://dribbble.com/tags/spatial-ui" target="_blank">Spatial UI</Link>, which will be popularized by the upcoming VR and AR devices, such interactions will become more common. I'm excited to see what designers come up with new ways to help us interact with the rapidly evolving digital world.
+However, I feel that with the advent of <Link href="https://dribbble.com/tags/spatial-ui" target="_blank">Spatial UI</Link>, which will be popularized by the upcoming VR and AR devices, such interactions will become more common. I'm excited to see what new ways designers come up with to help us interact with the rapidly evolving digital world.
