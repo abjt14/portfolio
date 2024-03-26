@@ -1,0 +1,18 @@
+.twinkle {
+  animation: twinkle 10s infinite;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.25;
+  }
+  80% {
+    opacity: 0.25;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
