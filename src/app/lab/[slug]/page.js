@@ -5,6 +5,7 @@ import ExperimentExport from "@/app/lab/[slug]/experiments/ExperimentExport";
 import CustomMDX from "@/components/CustomMDX";
 import ProjectLink from "@/app/lab/[slug]/ProjectLink";
 import VideoPreview from "@/app/lab/[slug]/components/VideoPreview";
+import { formatDate } from "@/helpers/date";
 
 export async function generateMetadata({ params }) {
   const { slug } = params;
@@ -78,7 +79,7 @@ export default function Experiment({ params }) {
               <h1 className="w-full text-left text-neutral-700 dark:text-neutral-200 font-medium">
                 {name}
               </h1>
-              <p className="text-neutral-500 text-sm">{date}</p>
+              <p className="text-neutral-500 text-sm">{formatDate(date)}</p>
             </div>
             <div className="flex justify-end items-center">
               {type === "external" && <ProjectLink href={href} name={name} />}

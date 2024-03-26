@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatDate } from "@/helpers/date";
 
 export default function ExperimentPreview({ experiments, index = 0 }) {
   const { slug, name, resolution, date } = experiments;
@@ -59,7 +60,9 @@ export default function ExperimentPreview({ experiments, index = 0 }) {
                 <span>{name}</span>
                 {externalIcon && <ExternalIcon />}
               </div>
-              <p className="text-xs sm:text-sm text-neutral-400">{date}</p>
+              <p className="text-xs sm:text-sm text-neutral-400">
+                {formatDate(date)}
+              </p>
             </div>
           </div>
         </div>
