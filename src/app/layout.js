@@ -13,6 +13,37 @@ export const metadata = {
     template: "%s | abjt . web developer . cg artist",
   },
   description: "Crafting engaging experiences for the internet.",
+  openGraph: {
+    title: "abjt . web developer . digital artist",
+    description: "Crafting engaging experiences for the internet.",
+    url: "https://abjt.dev/",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "https://abjt.dev/og/og-medium.png",
+        alt: "abjt . web developer . digital artist",
+        width: 1440,
+        height: 820,
+      },
+    ],
+  },
+  twitter: {
+    title: "abjt . web developer . digital artist",
+    description: "Crafting engaging experiences for the internet.",
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
