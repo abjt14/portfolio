@@ -1,112 +1,252 @@
-import Image from "next/image";
+import Name from "@/app/components/Name";
+import Clock from "@/app/components/Clock";
+import VideoLink from "@/app/components/VideoLink";
+import DashedLine from "@/components/DashedLine";
+import MobileSocialLink from "@/components/MobileSocialLink";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+    <main className="relative min-h-svh flex justify-center w-full items-start sm:items-center lg:items-start pt-14 sm:pt-0 lg:pt-[7.75rem] pb-28 sm:pb-16 lg:pb-0 px-4 sm:px-8 md:px-20 lg:px-0">
+      <div className="relative h-full w-full max-w-screen-md flex flex-col justify-start items-center gap-0">
+        <div className="h-32 w-full flex justify-between items-center">
+          <div className="hidden sm:block h-full w-32 p-0.5 relative">
+            <VideoLink
+              slug="hold-to-submit"
+              className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
             />
-          </a>
+          </div>
+          <div className="hidden lg:block h-full w-32 relative">
+            <DashedLine direction="vertical" className="left-0 block" />
+          </div>
+          <div className="flex-1 h-full px-3 md:px-0 flex justify-center items-center relative">
+            <div className="text-neutral-500 text-center">
+              Crafting{" "}
+              <span className="text-neutral-950 dark:text-neutral-50">
+                engaging experiences
+              </span>
+              <br />
+              for the internet
+            </div>
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block left-0"
+            />
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block right-0"
+            />
+          </div>
+          <div className="h-full w-32 relative hidden lg:block">
+            <DashedLine direction="vertical" className="right-0 block" />
+          </div>
+          <div className="hidden sm:block h-full w-32 p-0.5 relative">
+            <VideoLink
+              slug="radio-input"
+              videoSrc="/lab/radio-input/optimized-2.mp4"
+              backgroundSrc="/lab/radio-input/placeholder-2.webp"
+              width={720}
+              height={720}
+              className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-300"
+            />
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        <div className="h-auto sm:h-32 w-full flex justify-center items-center relative overflow-hidden">
+          <DashedLine direction="horizontal" className="top-0 left-0" />
+          <Name />
+          <DashedLine direction="horizontal" className="bottom-0 right-0" />
+        </div>
+        <div className="h-32 w-full flex justify-between items-center relative">
+          <div className="hidden sm:grid h-full w-32 grid-rows-2 relative">
+            <div className="relative">
+              <DashedLine direction="horizontal" className="bottom-0" />
+            </div>
+            <Clock />
+          </div>
+          <div className="flex-1 h-full flex justify-center items-center px-3 md:px-7 relative">
+            <span className="text-neutral-500 text-center text-balance">
+              With a creative approach to development,
+              <br className="block sm:hidden md:block" /> I add intuitiveness
+              and life to my work.
+            </span>
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block left-0"
+            />
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block right-0"
+            />
+          </div>
+          <div className="hidden sm:grid h-full w-32 grid-rows-2 relative">
+            <div className="flex flex-col font-medium justify-center items-center text-sm font-geistmono">
+              <span>DEVELOPER</span>
+              <span className="text-neutral-500">Portfolio</span>
+            </div>
+            <div className="relative">
+              <DashedLine direction="horizontal" className="top-0" />
+            </div>
+          </div>
+          <DashedLine direction="horizontal" className="bottom-0 sm:bottom-0" />
+        </div>
+        <div className="h-auto w-full flex flex-col sm:grid sm:grid-cols-4 lg:grid-cols-6 gap-0 relative">
+          <div className="h-32 hidden sm:block"></div>
+          <div className="h-32 hidden lg:block"></div>
+          <div className="block col-span-2 row-span-2 sm:flex items-center p-0.5 relative">
+            <VideoLink
+              slug="polyrhythmic-rings"
+              className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-100"
+            />
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block top-0 -left-px"
+            />
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block top-0 -right-px"
+            />
+          </div>
+          <div className="h-auto sm:h-32 sm:hidden lg:block py-8 sm:py-0 relative">
+            <div className="grid sm:hidden grid-cols-2">
+              <Clock />
+              <div className="flex flex-col justify-center items-center font-geistmono">
+                <span>DEVELOPER</span>
+                <span className="text-neutral-500">Portfolio</span>
+              </div>
+            </div>
+            <DashedLine
+              direction="vertical"
+              className="block sm:hidden top-0 left-1/2"
+            />
+            <DashedLine
+              direction="horizontal"
+              className="block sm:hidden top-0"
+            />
+            <DashedLine
+              direction="horizontal"
+              className="block sm:hidden bottom-0"
+            />
+          </div>
+          <div className="h-auto w-auto sm:h-32 sm:w-32 justify-self-auto sm:justify-self-end relative">
+            <div className="grid grid-cols-2 gap-0 sm:block">
+              <div className="p-0.5">
+                <VideoLink
+                  slug="magnetic-button"
+                  videoSrc="/lab/magnetic-button/optimized-2.mp4"
+                  backgroundSrc="/lab/magnetic-button/placeholder-2.webp"
+                  width={720}
+                  height={720}
+                  className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
+                />
+              </div>
+              <div></div>
+            </div>
+            <DashedLine
+              direction="vertical"
+              className="top-0 left-1/2 sm:-left-px"
+            />
+            <DashedLine
+              direction="vertical"
+              className="block sm:hidden left-1/2"
+            />
+            <DashedLine
+              direction="horizontal"
+              className="block sm:hidden bottom-0"
+            />
+          </div>
+          <div className="h-auto w-auto sm:h-32 sm:w-32 justify-self-start pb-px relative">
+            <div className="grid grid-cols-2 gap-px sm:block">
+              <div></div>
+              <div className="p-0.5">
+                <VideoLink
+                  slug="searchlight"
+                  videoSrc="/lab/searchlight/optimized-2.mp4"
+                  backgroundSrc="/lab/searchlight/placeholder-2.webp"
+                  width={720}
+                  height={720}
+                  className="hidden sm:block opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-500"
+                />
+                <VideoLink
+                  slug="hold-to-submit"
+                  className="block sm:hidden opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
+                />
+              </div>
+            </div>
+            <DashedLine
+              direction="vertical"
+              className="hidden sm:block top-0 -right-px"
+            />
+            <DashedLine
+              direction="vertical"
+              className="block sm:hidden left-1/2"
+            />
+            <DashedLine
+              direction="horizontal"
+              className="block sm:hidden bottom-0"
+            />
+          </div>
+          <div className="h-auto sm:h-32 relative">
+            <div className="grid grid-cols-2 sm:hidden">
+              <div className="p-0.5">
+                <VideoLink
+                  slug="radio-input"
+                  videoSrc="/lab/radio-input/optimized-2.mp4"
+                  backgroundSrc="/lab/radio-input/placeholder-2.webp"
+                  width={720}
+                  height={720}
+                  className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
+                />
+              </div>
+              <div></div>
+            </div>
+            <DashedLine
+              direction="horizontal"
+              className="block sm:hidden -bottom-px sm:bottom-0"
+            />
+          </div>
+          <div className="grid sm:hidden grid-cols-4">
+            <div className="aspect-square relative">
+              <MobileSocialLink type="github" />
+              <DashedLine direction="vertical" className="top-0 -right-px" />
+            </div>
+            <div className="aspect-square relative">
+              <MobileSocialLink type="linkedin" />
+              <DashedLine direction="vertical" className="top-0 -right-px" />
+            </div>
+            <div className="aspect-square relative">
+              <MobileSocialLink type="codepen" />
+              <DashedLine direction="vertical" className="top-0 -right-px" />
+            </div>
+            <div className="aspect-square relative">
+              <MobileSocialLink type="artstation" />
+            </div>
+          </div>
+          <div className="hidden lg:block h-32"></div>
+          <div className="hidden lg:block h-32"></div>
+          <DashedLine
+            direction="horizontal"
+            className="hidden sm:block top-[calc(50%-0.5px)]"
+          />
+        </div>
+        <DashedLine
+          direction="vertical"
+          className="-left-px top-1/2 -translate-y-1/2"
+          gradient
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <DashedLine
+          direction="vertical"
+          className="-right-px top-1/2 -translate-y-1/2"
+          gradient
+        />
+        <DashedLine
+          direction="horizontal"
+          className="-top-px left-1/2 -translate-x-1/2"
+          gradient
+        />
+        <DashedLine
+          direction="horizontal"
+          className="-bottom-px left-1/2 -translate-x-1/2"
+          gradient
+        />
       </div>
     </main>
   );
