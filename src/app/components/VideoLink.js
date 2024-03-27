@@ -1,7 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { experiments } from "@/data/experiments";
-import Image from "next/image";
 
 export default function VideoLink({
   slug,
@@ -46,18 +45,13 @@ export default function VideoLink({
             aspectRatio,
           }}
         />
-        <Image
-          src={
-            backgroundSrc !== ""
-              ? `${backgroundSrc}`
-              : `/lab/${slug}/placeholder.webp`
-          }
-          alt={"placeholder for " + name}
-          width={aspectWidth}
-          height={aspectHeight}
-          priority={true}
-          className="absolute top-0 left-0 h-full w-full blur-xl z-10"
+        <div
+          className="absolute top-0 left-0 h-full w-full bg-no-repeat bg-cover blur-xl z-10"
           style={{
+            backgroundImage:
+              backgroundSrc !== ""
+                ? backgroundSrc
+                : `url(/lab/${slug}/placeholder.webp)`,
             aspectRatio,
           }}
         />
