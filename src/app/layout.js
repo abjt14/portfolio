@@ -2,7 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import clsx from "clsx";
-import Navigation from "@/components/Navigation";
+// import Navigation from "@/components/Navigation";
 import { cookies } from "next/headers";
 import ThemeProvider from "@/context/ThemeProvider";
 import SoundProvider from "@/context/SoundProvider";
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
       <body className="text-neutral-950 dark:text-neutral-50 font-geistsans bg-neutral-200 dark:bg-neutral-925 relative overflow-x-hidden z-10">
         <ThemeProvider initialTheme={theme}>
           <SoundProvider>
-            <Navigation />
+            {/* <Navigation /> */}
             {children}
           </SoundProvider>
         </ThemeProvider>
