@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import React from "react";
-import { experiments } from "@/data/experiments";
 import clsx from "clsx";
+import { experiments } from "@/data/experiments";
 
 export default function VideoLink({
   slug,
