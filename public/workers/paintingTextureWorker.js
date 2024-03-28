@@ -1,8 +1,8 @@
 class PaintingTexture {
   constructor(isMobile, options = {}) {
     this.points = [];
-    this.height = (!isMobile ? 384 : 329) / 16;
-    this.width = (!isMobile ? 2304 : 700) / 16;
+    this.height = (!isMobile ? 384 : 329) / 64;
+    this.width = (!isMobile ? 2304 : 700) / 64;
     this.radius = this.width * (!isMobile ? 0.0384 : 0.0768);
     this.maxAge = 64;
     this.intensityFactor = 1.0;
