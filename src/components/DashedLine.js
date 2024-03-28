@@ -24,7 +24,7 @@ export default function DashedLine({
     if (direction === "horizontal") {
       lengthClass = "w-[calc(100%+3.5rem)]";
     } else if (direction === "vertical") {
-      lengthClass = "h-[calc(100%+3.5rem)]";
+      lengthClass = "h-[calc(100%+7rem)] sm:h-[calc(100%+3.5rem)]";
     }
   }
 
