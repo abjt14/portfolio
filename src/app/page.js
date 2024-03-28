@@ -1,4 +1,4 @@
-// import Name from "@/app/components/Name";
+import Name from "@/app/components/Name";
 import Clock from "@/app/components/Clock";
 import VideoLink from "@/app/components/VideoLink";
 import DashedLine from "@/components/DashedLine";
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
         <div className="h-auto sm:h-32 w-full flex justify-center items-center relative overflow-hidden">
           <DashedLine direction="horizontal" className="top-0 left-0" />
-          {/* <Name /> */}
+          <Name />
           <DashedLine direction="horizontal" className="bottom-0 right-0" />
         </div>
         <div className="h-32 w-full flex justify-between items-center relative">
