@@ -6,7 +6,11 @@ export default async function sitemap() {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  let experimentPages = experiments.map((experiment) => ({
+  const filteredExperiments = experiments.filter(
+    (experiment) => experiment.type === "internal" || experiment.mdx
+  );
+
+  let experimentPages = filteredExperiments.map((experiment) => ({
     url: `https://abjt.dev/lab/${experiment.slug}`,
     lastModified: experiment.publishedAt,
   }));
