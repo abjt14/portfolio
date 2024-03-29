@@ -238,6 +238,17 @@ self.onmessage = (event) => {
   }
 };
 
+/*
+ *
+ *
+ *
+ * CONSTANTS AND WEBGL HELPERS
+ *
+ *
+ *
+ *
+ */
+
 const vertexShaderSource = `
   attribute vec2 a_position;
   attribute float a_vertexIndex;
