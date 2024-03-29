@@ -93,12 +93,7 @@ let paintingTexture = null;
 self.onmessage = (event) => {
   const { data } = event;
   if (data.command === "init") {
-    paintingTexture = new PaintingTexture(
-      data.height,
-      data.width,
-      data.isMobile,
-      data.options
-    );
+    paintingTexture = new PaintingTexture(data.isMobile, data.options);
   } else if (data.command === "addPoint") {
     paintingTexture.addPoint(data.point);
   } else if (data.command === "update") {
