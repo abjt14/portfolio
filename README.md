@@ -7,8 +7,11 @@ The 7th edition of my developer portfolio, with some new weapons in my arsenal.
 - [Next.js](https://nextjs.org/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [MDX](https://mdxjs.com/)
 - SVG
-- Webgl + GLSL
+- Webgl
+- GLSL
+- Web Workers
 
 ## Acknowledgements
 
