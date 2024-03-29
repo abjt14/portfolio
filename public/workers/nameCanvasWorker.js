@@ -223,8 +223,8 @@ self.onmessage = (event) => {
     nameCanvas.init();
   } else if (data.command === "update") {
     nameCanvas.setTimeUniform(data.time);
-    const bitmap = nameCanvas.export();
     nameCanvas.draw();
+    const bitmap = nameCanvas.export();
     self.postMessage({ bitmap }, [bitmap]);
   } else if (data.command === "setModeUniform") {
     nameCanvas.setModeUniform(data.mode);
