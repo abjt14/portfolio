@@ -149,8 +149,6 @@ class NameCanvas {
       this.gl.getUniformLocation(this.program, "u_PaintingTexture"),
       1
     );
-
-    this.draw();
   }
 
   setConstantUniforms() {
@@ -226,6 +224,7 @@ self.onmessage = (event) => {
   } else if (data.command === "update") {
     nameCanvas.setTimeUniform(data.time);
     const bitmap = nameCanvas.export();
+    nameCanvas.draw();
     self.postMessage({ bitmap }, [bitmap]);
   } else if (data.command === "setModeUniform") {
     nameCanvas.setModeUniform(data.mode);
