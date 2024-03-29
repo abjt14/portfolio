@@ -156,7 +156,7 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
     <canvas
       ref={canvasRef}
       className={clsx(
-        "w-full h-auto cursor-pointer aspect-[700/329] sm:aspect-[2304/384] touch-none",
+        "w-full h-auto cursor-pointer aspect-[700/329] sm:aspect-[2304/384] touch-none select-none",
         isMobile ? "block sm:hidden" : "hidden sm:block"
       )}
     />
