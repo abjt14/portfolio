@@ -46,6 +46,8 @@ module.exports = {
         "fade-in-1000": "fadeIn 1000ms ease-out forwards",
         "fade-out-150": "fadeOut 150ms ease-out forwards",
         "fade-out-300": "fadeOut 300ms ease-out forwards",
+        "fade-out-500": "fadeOut 500ms ease-out forwards",
+        "fade-out-1000": "fadeOut 1000ms ease-out forwards",
         "fade-zoom-in-150":
           "fadeZoomIn 150ms cubic-bezier(0.45, 0, 0.55, 1) forwards",
         "fade-zoom-in-300":
