@@ -2,8 +2,9 @@
 
 import React from "react";
 
-export default function useWindowBreakpoints({ isMobile = false }) {
+export default function useWindowBreakpoints(options = {}) {
   const [breakpoint, setBreakpoint] = React.useState(false);
+  const isMobile = options.isMobile || false;
 
   React.useEffect(() => {
     const handleResize = () => {
