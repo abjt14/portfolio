@@ -20,7 +20,7 @@ export default function ExperimentPreview({ experiments, index = 0 }) {
       prefetch={true}
       href={href}
       target={target}
-      className="w-full h-auto group opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 origin-center sm:origin-top-left rounded-xl outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
+      className="w-full h-auto group rounded-xl outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
       style={{
         animationDelay: `${index * 50}ms`,
         transform: "translateZ(0)",
