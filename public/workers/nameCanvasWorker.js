@@ -2,6 +2,7 @@ class NameCanvas {
   constructor(isMobile) {
     this.height = !isMobile ? 384 : 329;
     this.width = !isMobile ? 2304 : 700;
+    this.isMobile = isMobile;
   }
 
   init() {
@@ -9,6 +10,8 @@ class NameCanvas {
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.gl = this.canvas.getContext("webgl", { antialias: true });
+    this.paintingTexture = new PaintingTexture(this.isMobile);
+    this.paintingTexture.initTexture();
     this.clear();
 
     this.compileShaders();
@@ -17,7 +20,8 @@ class NameCanvas {
     this.setAttributes();
     this.initNameTexture();
     this.initPaintingTexture();
-    this.setConstantUniforms();
+    this.setPaintingTexture(this.paintingTexture.export());
+    this.setConstantUniformsAndLocations();
     this.draw();
   }
 
@@ -151,7 +155,7 @@ class NameCanvas {
     );
   }
 
-  setConstantUniforms() {
+  setConstantUniformsAndLocations() {
     // set canvas resolution uniform
     const u_resolutionLocation = this.gl.getUniformLocation(
       this.program,
@@ -176,19 +180,25 @@ class NameCanvas {
       "u_cellSizeY"
     );
     this.gl.uniform1f(u_cellSizeYLocation, cellSizeY);
+
+    // set time uniform location
+    this.u_timeLocation = this.gl.getUniformLocation(this.program, "u_time");
+
+    // set mode uniform location
+    this.u_modeLocation = this.gl.getUniformLocation(this.program, "u_mode");
   }
 
   setTimeUniform(value) {
-    const u_timeLocation = this.gl.getUniformLocation(this.program, "u_time");
-    this.gl.uniform1f(u_timeLocation, value);
+    this.gl.uniform1f(this.u_timeLocation, value);
   }
 
   setModeUniform(value) {
-    const u_modeLocation = this.gl.getUniformLocation(this.program, "u_mode");
-    this.gl.uniform1f(u_modeLocation, value);
+    this.gl.uniform1f(this.u_modeLocation, value);
   }
 
   draw() {
+    this.paintingTexture.update();
+    this.setPaintingTexture(this.paintingTexture.export());
     this.gl.clearColor(0.0, 0.0, 0.0, 0.0);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT);
     this.gl.drawElements(
@@ -207,6 +217,7 @@ class NameCanvas {
     this.gl.deleteBuffer(this.indexBuffer);
     this.gl.deleteTexture(this.texture1);
     this.gl.deleteTexture(this.texture2);
+    this.paintingTexture.cleanUp();
   }
 
   export() {
@@ -218,25 +229,140 @@ let nameCanvas = null;
 
 self.onmessage = (event) => {
   const { data } = event;
-  if (data.command === "init") {
-    nameCanvas = new NameCanvas(data.isMobile);
-    nameCanvas.init();
-  } else if (data.command === "update") {
-    nameCanvas.setTimeUniform(data.time);
-    nameCanvas.draw();
-    const bitmap = nameCanvas.export();
-    self.postMessage({ bitmap }, [bitmap]);
-  } else if (data.command === "setModeUniform") {
-    nameCanvas.setModeUniform(data.mode);
-  } else if (data.command === "setNameTexture") {
-    nameCanvas.setNameTexture(data.image);
-  } else if (data.command === "setPaintingTexture") {
-    nameCanvas.setPaintingTexture(data.bitmap);
-  } else if (data.command === "cleanUp") {
-    nameCanvas.destroy();
-    nameCanvas = null;
+  switch (data.command) {
+    case "init":
+      nameCanvas = new NameCanvas(data.isMobile);
+      nameCanvas.init();
+      break;
+    case "setModeUniform":
+      nameCanvas.setModeUniform(data.mode);
+      break;
+    case "setNameTexture":
+      nameCanvas.setNameTexture(data.image);
+      break;
+    case "update":
+      nameCanvas.setTimeUniform(data.time);
+      nameCanvas.draw();
+      const bitmap = nameCanvas.export();
+      self.postMessage({ bitmap }, [bitmap]);
+      break;
+    case "addPoint":
+      nameCanvas.paintingTexture.addPoint(data.point);
+      break;
+    case "updateMousePosition":
+      nameCanvas.paintingTexture.mousePosition = data.mousePosition;
+      break;
+    case "cleanUp":
+      nameCanvas.cleanUp();
+      nameCanvas = null;
+      break;
   }
 };
+
+/*
+ *
+ *
+ *
+ * PAINTING TEXTURE
+ *
+ *
+ *
+ *
+ */
+
+class PaintingTexture {
+  constructor(isMobile, options = {}) {
+    this.points = [];
+    this.height = (!isMobile ? 384 : 329) / 64;
+    this.width = (!isMobile ? 2304 : 700) / 64;
+    this.radius = this.width * (!isMobile ? 0.0384 : 0.0768);
+    this.maxAge = 64;
+    this.intensityFactor = 1.0;
+    this.options = options;
+    this.mousePosition = { x: -10000, y: -10000 };
+    this.id = Math.random();
+
+    this.initTexture();
+  }
+
+  initTexture() {
+    this.canvas = new OffscreenCanvas(this.width, this.height);
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+    this.ctx = this.canvas.getContext("2d");
+    this.clear();
+  }
+
+  clear() {
+    this.ctx.fillStyle = "black";
+    this.ctx.fillRect(0, 0, this.width, this.height);
+  }
+
+  addPoint(point) {
+    this.points.push({ x: point.x, y: point.y, age: 0 });
+  }
+
+  drawPoint(point) {
+    // Convert normalized position into canvas coordinates and scale
+    const pos = {
+      x: point.x * this.width,
+      y: (1 - point.y) * this.height,
+    };
+    const radius = this.radius;
+    const ctx = this.ctx;
+
+    let intensity = 1;
+    intensity = 1 - point.age / this.maxAge;
+
+    let color = "255,255,255";
+
+    // 1. Give the shadow a high offset.
+    let offset = this.width * 5;
+    ctx.shadowOffsetX = offset;
+    ctx.shadowOffsetY = offset;
+    ctx.shadowBlur = radius * 1;
+    ctx.shadowColor = `rgba(${color},${this.intensityFactor * intensity})`;
+
+    this.ctx.beginPath();
+    this.ctx.fillStyle = "rgba(255,255,255,1)";
+
+    // 2. Move the point to the other direction of the offset
+    this.ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
+    this.ctx.fill();
+  }
+
+  update() {
+    this.clear();
+
+    this.points.forEach((point, i) => {
+      point.age += 1;
+      if (point.age > this.maxAge) {
+        this.points.splice(i, 1);
+      }
+    });
+    this.points.forEach((point) => {
+      this.drawPoint(point);
+    });
+
+    // add new point
+    let pos = {
+      x: this.mousePosition.x,
+      y: this.mousePosition.y,
+    };
+
+    this.addPoint(pos);
+  }
+
+  export() {
+    return this.canvas.transferToImageBitmap();
+  }
+
+  cleanUp() {
+    this.canvas = null;
+    this.ctx = null;
+    this.points = [];
+  }
+}
 
 /*
  *
