@@ -44,8 +44,8 @@ export default function Home() {
               slug="radio-input"
               videoSrc="/lab/radio-input/optimized-2.mp4"
               backgroundSrc="/lab/radio-input/placeholder-2.webp"
-              width={720}
-              height={720}
+              width={540}
+              height={540}
               className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-300"
             />
           </div>
@@ -133,8 +133,8 @@ export default function Home() {
                   slug="magnetic-button"
                   videoSrc="/lab/magnetic-button/optimized-2.mp4"
                   backgroundSrc="/lab/magnetic-button/placeholder-2.webp"
-                  width={720}
-                  height={720}
+                  width={540}
+                  height={540}
                   className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>
@@ -191,8 +191,8 @@ export default function Home() {
                   slug="radio-input"
                   videoSrc="/lab/radio-input/optimized-2.mp4"
                   backgroundSrc="/lab/radio-input/placeholder-2.webp"
-                  width={720}
-                  height={720}
+                  width={540}
+                  height={540}
                   className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>
