@@ -9,7 +9,7 @@ export default function Clock({ className = "" }) {
   React.useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
-    }, 1);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
