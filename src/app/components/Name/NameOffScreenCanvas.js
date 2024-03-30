@@ -43,88 +43,72 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
     function renderNameCanvas(time) {
       nameCanvasWorker.postMessage({ command: "update", time: time });
     }
-
-    // set painting texture worker
-    const paintingTextureWorker = new Worker(
-      "workers/paintingTextureWorker.js"
-    );
-    paintingTextureWorker.postMessage({
-      command: "init",
-      isMobile: isMobile,
-      options: {},
-    });
-    paintingTextureWorker.onmessage = (event) => {
-      const { bitmap } = event.data;
-      nameCanvasWorker.postMessage({ command: "setPaintingTexture", bitmap });
-    };
-    function renderPaintingTexture() {
-      paintingTextureWorker.postMessage({ command: "update" });
+    // toggle mode uniform's value
+    function handleModeToggle() {
+      nameCanvasWorker.postMessage({ command: "toggleModeUniform" });
     }
-    function handleMouseMove(event) {
-      const canvasRect = canvas.getBoundingClientRect();
-      // normalize position into [0, 1] and flip y
-      const x = (event.clientX - canvasRect.left) / canvasRect.width;
-      const y = 1 - (event.clientY - canvasRect.top) / canvasRect.height;
-      const point = {
-        x: x,
-        y: y,
+    canvas.addEventListener("click", handleModeToggle);
+
+    // set up mouse and touch events
+    let handleMouseMove = null;
+    let handleMouseLeave = null;
+    if (!isMobile) {
+      handleMouseMove = (event) => {
+        const canvasRect = canvas.getBoundingClientRect();
+        // normalize position into [0, 1] and flip y
+        const x = (event.clientX - canvasRect.left) / canvasRect.width;
+        const y = 1 - (event.clientY - canvasRect.top) / canvasRect.height;
+        const point = {
+          x: x,
+          y: y,
+        };
+        nameCanvasWorker.postMessage({ command: "addPoint", point: point });
+        nameCanvasWorker.postMessage({
+          command: "updateMousePosition",
+          mousePosition: { x, y },
+        });
       };
-      paintingTextureWorker.postMessage({ command: "addPoint", point: point });
-      paintingTextureWorker.postMessage({
-        command: "updateMousePosition",
-        mousePosition: { x, y },
-      });
+      handleMouseLeave = () => {
+        nameCanvasWorker.postMessage({
+          command: "updateMousePosition",
+          mousePosition: { x: -10000, y: -10000 },
+        });
+      };
+      canvas.addEventListener("mousemove", handleMouseMove);
+      canvas.addEventListener("mouseleave", handleMouseLeave);
     }
-    function handleMouseLeave() {
-      paintingTextureWorker.postMessage({
-        command: "updateMousePosition",
-        mousePosition: { x: -10000, y: -10000 },
-      });
+    let handleTouchMove = null;
+    let handleTouchEnd = null;
+    if (isMobile) {
+      handleTouchMove = (event) => {
+        const touch = event.touches[0];
+        const canvasRect = canvas.getBoundingClientRect();
+        // normalize position into [0, 1] and flip y
+        const x = (touch.clientX - canvasRect.left) / canvasRect.width;
+        const y = 1 - (touch.clientY - canvasRect.top) / canvasRect.height;
+        const point = {
+          x: x,
+          y: y,
+        };
+        nameCanvasWorker.postMessage({ command: "addPoint", point: point });
+        nameCanvasWorker.postMessage({
+          command: "updateMousePosition",
+          mousePosition: { x, y },
+        });
+      };
+      handleTouchEnd = () => {
+        nameCanvasWorker.postMessage({
+          command: "updateMousePosition",
+          mousePosition: { x: -10000, y: -10000 },
+        });
+      };
+      canvas.addEventListener("touchmove", handleTouchMove);
+      canvas.addEventListener("touchend", handleTouchEnd);
     }
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
-    // simulate mouse events on touch devices
-    function handleTouchStart(event) {
-      const touch = event.touches[0];
-      const mouseEvent = new MouseEvent("mousedown", {
-        clientX: touch.clientX,
-        clientY: touch.clientY,
-      });
-      canvas.dispatchEvent(mouseEvent);
-    }
-    function handleTouchMove(event) {
-      const touch = event.touches[0];
-      const mouseEvent = new MouseEvent("mousemove", {
-        clientX: touch.clientX,
-        clientY: touch.clientY,
-      });
-      canvas.dispatchEvent(mouseEvent);
-    }
-    function handleTouchEnd() {
-      const mouseEvent = new MouseEvent("mouseup", {});
-      canvas.dispatchEvent(mouseEvent);
-    }
-    document.addEventListener("touchstart", handleTouchStart);
-    canvas.addEventListener("touchmove", handleTouchMove, false);
-    canvas.addEventListener("touchend", handleTouchEnd, false);
-
-    // set mode uniform
-    let mode = 0;
-    function handleModeChange() {
-      if (mode === 1) {
-        mode = 0;
-        nameCanvasWorker.postMessage({ command: "setModeUniform", mode });
-      } else {
-        mode = 1;
-        nameCanvasWorker.postMessage({ command: "setModeUniform", mode });
-      }
-    }
-    canvas.addEventListener("click", handleModeChange);
 
     let render_raf_id = false;
     function render(timestamp) {
       renderNameCanvas(timestamp / 1000);
-      renderPaintingTexture();
       render_raf_id = requestAnimationFrame(render);
     }
     render_raf_id = requestAnimationFrame(render);
@@ -139,14 +123,19 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
 
     return () => {
       window.cancelAnimationFrame(render_raf_id);
-      canvas.removeEventListener("click", handleModeChange);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("mouseleave", handleMouseLeave);
-      canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchmove", handleTouchMove);
-      canvas.removeEventListener("touchend", handleTouchEnd);
-      paintingTextureWorker.postMessage({ command: "cleanUp" });
-      paintingTextureWorker.terminate();
+      canvas.removeEventListener("click", handleModeToggle);
+      if (!isMobile) {
+        handleMouseMove &&
+          canvas.removeEventListener("mousemove", handleMouseMove);
+        handleMouseLeave &&
+          canvas.removeEventListener("mouseleave", handleMouseLeave);
+      }
+      if (isMobile) {
+        handleTouchMove &&
+          canvas.removeEventListener("touchmove", handleTouchMove);
+        handleTouchEnd &&
+          canvas.removeEventListener("touchend", handleTouchEnd);
+      }
       nameCanvasWorker.postMessage({ command: "cleanUp" });
       nameCanvasWorker.terminate();
     };

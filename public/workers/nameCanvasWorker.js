@@ -3,6 +3,7 @@ class NameCanvas {
     this.height = !isMobile ? 384 : 329;
     this.width = !isMobile ? 2304 : 700;
     this.isMobile = isMobile;
+    this.modeUniform = 0;
   }
 
   init() {
@@ -184,16 +185,18 @@ class NameCanvas {
     // set time uniform location
     this.u_timeLocation = this.gl.getUniformLocation(this.program, "u_time");
 
-    // set mode uniform location
+    // set mode uniform
     this.u_modeLocation = this.gl.getUniformLocation(this.program, "u_mode");
+    this.gl.uniform1f(this.u_modeLocation, this.modeUniform);
   }
 
   setTimeUniform(value) {
     this.gl.uniform1f(this.u_timeLocation, value);
   }
 
-  setModeUniform(value) {
-    this.gl.uniform1f(this.u_modeLocation, value);
+  toggleModeUniform() {
+    this.modeUniform = this.modeUniform === 0 ? 1 : 0;
+    this.gl.uniform1f(this.u_modeLocation, this.modeUniform);
   }
 
   draw() {
@@ -234,8 +237,8 @@ self.onmessage = (event) => {
       nameCanvas = new NameCanvas(data.isMobile);
       nameCanvas.init();
       break;
-    case "setModeUniform":
-      nameCanvas.setModeUniform(data.mode);
+    case "toggleModeUniform":
+      nameCanvas.toggleModeUniform();
       break;
     case "setNameTexture":
       nameCanvas.setNameTexture(data.image);
