@@ -15,16 +15,17 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    canvas.height = !isMobile ? 384 : 329;
-    canvas.width = !isMobile ? 2304 : 700;
-    const ctx = canvas.getContext("bitmaprenderer");
-
     // set up webgl canvas worker
+    const offscreenCanvas = canvas.transferControlToOffscreen();
     const nameCanvasWorker = new Worker("workers/nameCanvasWorker.js", {});
-    nameCanvasWorker.postMessage({
-      command: "init",
-      isMobile: isMobile,
-    });
+    nameCanvasWorker.postMessage(
+      {
+        command: "init",
+        canvas: offscreenCanvas,
+        isMobile: isMobile,
+      },
+      [offscreenCanvas]
+    );
 
     // load name image and send to worker
     let img = new Image();
@@ -105,11 +106,6 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
       canvas.addEventListener("touchmove", handleTouchMove);
       canvas.addEventListener("touchend", handleTouchEnd);
     }
-
-    nameCanvasWorker.onmessage = (event) => {
-      const { bitmap } = event.data;
-      ctx.transferFromImageBitmap(bitmap);
-    };
 
     setIsLoaded(true);
 

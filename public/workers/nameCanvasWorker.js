@@ -1,5 +1,6 @@
 class NameCanvas {
-  constructor(isMobile) {
+  constructor(canvas, isMobile) {
+    this.canvas = canvas;
     this.height = !isMobile ? 384 : 329;
     this.width = !isMobile ? 2304 : 700;
     this.isMobile = isMobile;
@@ -7,7 +8,6 @@ class NameCanvas {
   }
 
   init() {
-    this.canvas = new OffscreenCanvas(this.width, this.height);
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.gl = this.canvas.getContext("webgl", { antialias: true });
@@ -230,9 +230,6 @@ class NameCanvas {
 
   render() {
     this.draw();
-    const bitmap = this.export();
-    self.postMessage({ bitmap }, [bitmap]);
-    bitmap.close();
   }
 }
 
@@ -258,7 +255,7 @@ self.onmessage = (event) => {
   const { data } = event;
   switch (data.command) {
     case "init":
-      nameCanvas = new NameCanvas(data.isMobile);
+      nameCanvas = new NameCanvas(data.canvas, data.isMobile);
       nameCanvas.init();
       raf_id = self.requestAnimationFrame(render);
       break;
