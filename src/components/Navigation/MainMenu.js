@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import MenuWrapper from "./MenuWrapper";
 import { usePathname } from "next/navigation";
-// import ConsumingStars from "../ConsumingStars";
+import ConsumingStarsCanvas from "../ConsumingStarsCanvas";
 
 export default function MainMenu() {
   const links = React.useMemo(
@@ -78,9 +78,7 @@ export default function MainMenu() {
               {isActive(link.href) && (
                 <>
                   <LinkLight layoutId={linkLightLayoutId + "link_light"} />
-                  {/* <ConsumingStarsWrapper
-                    layoutId={linkLightLayoutId + "consuming_stars"}
-                  /> */}
+                  <ConsumingStarsWrapper />
                 </>
               )}
             </motion.div>
@@ -111,18 +109,13 @@ export default function MainMenu() {
   );
 }
 
-// function ConsumingStarsWrapper({ layoutId }) {
-//   return (
-//     <motion.div
-//       key={layoutId}
-//       layoutId={layoutId}
-//       layout="position"
-//       className="absolute h-36 w-36 -top-1/4"
-//     >
-//       <ConsumingStars layoutId={layoutId} />
-//     </motion.div>
-//   );
-// }
+function ConsumingStarsWrapper() {
+  return (
+    <div className="absolute h-32 w-32 -top-1/4">
+      <ConsumingStarsCanvas />
+    </div>
+  );
+}
 
 function LinkLight({ layoutId }) {
   return (
