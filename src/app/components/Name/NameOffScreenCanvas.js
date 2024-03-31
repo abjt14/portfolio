@@ -17,7 +17,7 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
 
     canvas.height = !isMobile ? 384 : 329;
     canvas.width = !isMobile ? 2304 : 700;
-    const ctx = canvas.getContext("2d", { antialias: true });
+    const ctx = canvas.getContext("bitmaprenderer");
 
     // set up webgl canvas worker
     const nameCanvasWorker = new Worker("workers/nameCanvasWorker.js", {});
@@ -108,8 +108,7 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
 
     nameCanvasWorker.onmessage = (event) => {
       const { bitmap } = event.data;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      ctx.transferFromImageBitmap(bitmap);
     };
 
     setIsLoaded(true);
