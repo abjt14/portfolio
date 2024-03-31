@@ -235,10 +235,17 @@ class NameCanvas {
 }
 
 let nameCanvas = null;
-
+let lastRender = 0;
 function render(timestamp) {
-  nameCanvas.setTimeUniform(timestamp / 1000);
-  nameCanvas.render();
+  const delta = timestamp - lastRender;
+
+  // limit to 61 fps
+  if (delta >= 1000 / 61) {
+    nameCanvas.setTimeUniform(timestamp / 1000);
+    nameCanvas.render();
+    lastRender = timestamp;
+  }
+
   self.requestAnimationFrame(render);
 }
 
