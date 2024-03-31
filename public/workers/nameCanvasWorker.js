@@ -295,7 +295,7 @@ class PaintingTexture {
     this.height = (!isMobile ? 384 : 329) / 64;
     this.width = (!isMobile ? 2304 : 700) / 64;
     this.radius = (this.width * (!isMobile ? 384 : 329 * 2)) / 10000;
-    this.maxAge = 48;
+    this.maxAge = 64;
     this.intensityFactor = 1.0;
     this.options = options;
     this.mousePosition = { x: -10000, y: -10000 };
