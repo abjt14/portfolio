@@ -17,7 +17,7 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
 
     canvas.height = !isMobile ? 384 : 329;
     canvas.width = !isMobile ? 2304 : 700;
-    const ctx = canvas.getContext("2d", { antialias: true });
+    const ctx = canvas.getContext("bitmaprenderer");
 
     // set up webgl canvas worker
     const nameCanvasWorker = new Worker("workers/nameCanvasWorker.js", {});
@@ -25,6 +25,8 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
       command: "init",
       isMobile: isMobile,
     });
+
+    // load name image and send to worker
     let img = new Image();
     img.src = !isMobile ? name_big_svg : name_small_svg;
     img.onload = function () {
@@ -40,9 +42,7 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
         image: imageData,
       });
     };
-    function renderNameCanvas(time) {
-      nameCanvasWorker.postMessage({ command: "update", time: time });
-    }
+
     // toggle mode uniform's value
     function handleModeToggle() {
       nameCanvasWorker.postMessage({ command: "toggleModeUniform" });
@@ -106,23 +106,14 @@ function NameOffScreenCanvas({ isMobile = false, setIsLoaded }) {
       canvas.addEventListener("touchend", handleTouchEnd);
     }
 
-    let render_raf_id = false;
-    function render(timestamp) {
-      renderNameCanvas(timestamp / 1000);
-      render_raf_id = requestAnimationFrame(render);
-    }
-    render_raf_id = requestAnimationFrame(render);
-
     nameCanvasWorker.onmessage = (event) => {
       const { bitmap } = event.data;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      ctx.transferFromImageBitmap(bitmap);
     };
 
     setIsLoaded(true);
 
     return () => {
-      window.cancelAnimationFrame(render_raf_id);
       canvas.removeEventListener("click", handleModeToggle);
       if (!isMobile) {
         handleMouseMove &&
