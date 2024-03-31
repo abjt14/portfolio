@@ -227,10 +227,6 @@ class NameCanvas {
   export() {
     return this.canvas.transferToImageBitmap();
   }
-
-  render() {
-    this.draw();
-  }
 }
 
 let nameCanvas = null;
@@ -243,7 +239,7 @@ function render(timestamp) {
   // limit to 90 fps
   if (delta >= 1000 / 90) {
     nameCanvas.setTimeUniform(timestamp / 1000);
-    nameCanvas.render();
+    nameCanvas.draw();
     lastRender = timestamp;
   }
 
