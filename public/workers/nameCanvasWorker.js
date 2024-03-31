@@ -239,8 +239,8 @@ let lastRender = 0;
 function render(timestamp) {
   const delta = timestamp - lastRender;
 
-  // Limit to 30 FPS
-  if (delta >= 1000 / 30) {
+  // limit to 60 fps
+  if (delta >= 1000 / 60) {
     nameCanvas.setTimeUniform(timestamp / 1000);
     nameCanvas.render();
     lastRender = timestamp;
