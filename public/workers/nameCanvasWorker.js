@@ -235,6 +235,8 @@ class NameCanvas {
 }
 
 let nameCanvas = null;
+
+let raf_id = null;
 let lastRender = 0;
 function render(timestamp) {
   const delta = timestamp - lastRender;
@@ -246,7 +248,7 @@ function render(timestamp) {
     lastRender = timestamp;
   }
 
-  self.requestAnimationFrame(render);
+  raf_id = self.requestAnimationFrame(render);
 }
 
 self.onmessage = (event) => {
@@ -255,7 +257,7 @@ self.onmessage = (event) => {
     case "init":
       nameCanvas = new NameCanvas(data.isMobile);
       nameCanvas.init();
-      self.requestAnimationFrame(render);
+      raf_id = self.requestAnimationFrame(render);
       break;
     case "toggleModeUniform":
       nameCanvas.toggleModeUniform();
@@ -270,7 +272,7 @@ self.onmessage = (event) => {
       nameCanvas.paintingTexture.mousePosition = data.mousePosition;
       break;
     case "cleanUp":
-      self.cancelAnimationFrame(render);
+      self.cancelAnimationFrame(raf_id);
       nameCanvas.cleanUp();
       nameCanvas = null;
       break;
