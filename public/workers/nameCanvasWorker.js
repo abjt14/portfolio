@@ -239,7 +239,8 @@ let nameCanvas = null;
 function render(timestamp) {
   nameCanvas.setTimeUniform(timestamp / 1000);
   nameCanvas.render();
-  self.requestAnimationFrame(render);
+  console.log(timestamp);
+  // self.requestAnimationFrame(render);
 }
 
 self.onmessage = (event) => {
