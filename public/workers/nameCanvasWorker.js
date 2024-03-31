@@ -123,7 +123,7 @@ class NameCanvas {
     this.texture2 = this.gl.createTexture();
   }
 
-  setPaintingTexture(data) {
+  setPaintingTexture(bitmap) {
     this.gl.activeTexture(this.gl.TEXTURE1);
     this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture2);
     this.gl.texImage2D(
@@ -132,7 +132,7 @@ class NameCanvas {
       this.gl.RGBA,
       this.gl.RGBA,
       this.gl.UNSIGNED_BYTE,
-      data
+      bitmap
     );
     // set the texture parameters
     this.gl.texParameteri(
@@ -154,6 +154,7 @@ class NameCanvas {
       this.gl.getUniformLocation(this.program, "u_PaintingTexture"),
       1
     );
+    bitmap.close();
   }
 
   setConstantUniformsAndLocations() {
@@ -231,6 +232,7 @@ class NameCanvas {
     this.draw();
     const bitmap = this.export();
     self.postMessage({ bitmap }, [bitmap]);
+    bitmap.close();
   }
 }
 
