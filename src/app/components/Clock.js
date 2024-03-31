@@ -14,7 +14,7 @@ export default function Clock({ className = "" }) {
     return () => clearInterval(interval);
   }, []);
 
-  const raw = new Date().toLocaleTimeString("en-US", {
+  const raw = time.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
