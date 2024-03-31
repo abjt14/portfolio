@@ -235,12 +235,18 @@ class NameCanvas {
 }
 
 let nameCanvas = null;
-
+let lastRender = 0;
 function render(timestamp) {
-  nameCanvas.setTimeUniform(timestamp / 1000);
-  nameCanvas.render();
-  console.log(timestamp);
-  // self.requestAnimationFrame(render);
+  const delta = timestamp - lastRender;
+
+  // Limit to 30 FPS
+  if (delta >= 1000 / 30) {
+    nameCanvas.setTimeUniform(timestamp / 1000);
+    nameCanvas.render();
+    lastRender = timestamp;
+  }
+
+  self.requestAnimationFrame(render);
 }
 
 self.onmessage = (event) => {
