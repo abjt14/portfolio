@@ -226,21 +226,9 @@ class NameCanvas {
   export() {
     return this.canvas.transferToImageBitmap();
   }
-
-  render() {
-    this.draw();
-    const bitmap = this.export();
-    self.postMessage({ bitmap }, [bitmap]);
-  }
 }
 
 let nameCanvas = null;
-
-function render(timestamp) {
-  nameCanvas.setTimeUniform(timestamp / 1000);
-  nameCanvas.render();
-  self.requestAnimationFrame(render);
-}
 
 self.onmessage = (event) => {
   const { data } = event;
@@ -248,13 +236,18 @@ self.onmessage = (event) => {
     case "init":
       nameCanvas = new NameCanvas(data.isMobile);
       nameCanvas.init();
-      self.requestAnimationFrame(render);
       break;
     case "toggleModeUniform":
       nameCanvas.toggleModeUniform();
       break;
     case "setNameTexture":
       nameCanvas.setNameTexture(data.image);
+      break;
+    case "update":
+      nameCanvas.setTimeUniform(data.time);
+      nameCanvas.draw();
+      const bitmap = nameCanvas.export();
+      self.postMessage({ bitmap }, [bitmap]);
       break;
     case "addPoint":
       nameCanvas.paintingTexture.addPoint(data.point);
@@ -263,7 +256,6 @@ self.onmessage = (event) => {
       nameCanvas.paintingTexture.mousePosition = data.mousePosition;
       break;
     case "cleanUp":
-      self.cancelAnimationFrame(render);
       nameCanvas.cleanUp();
       nameCanvas = null;
       break;
