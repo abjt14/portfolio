@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import MenuWrapper from "./MenuWrapper";
 import { usePathname } from "next/navigation";
-import ConsumingStarsCanvas from "../ConsumingStarsCanvas";
+import ConsumingStarsOffscreenCanvas from "./ConsumingStarsOffscreenCanvas";
 
 export default function MainMenu() {
   const links = React.useMemo(
@@ -28,7 +28,6 @@ export default function MainMenu() {
   );
 
   const path = usePathname();
-
   const isActive = React.useCallback(
     (href) => {
       if (path === "/") {
@@ -42,6 +41,7 @@ export default function MainMenu() {
   );
 
   const linkLightLayoutId = React.useId();
+  const environment = process.env.NODE_ENV;
 
   return (
     <MenuWrapper>
@@ -78,7 +78,7 @@ export default function MainMenu() {
               {isActive(link.href) && (
                 <>
                   <LinkLight layoutId={linkLightLayoutId + "link_light"} />
-                  <ConsumingStarsWrapper />
+                  <ConsumingStarsWrapper environment={environment} />
                 </>
               )}
             </motion.div>
@@ -109,10 +109,10 @@ export default function MainMenu() {
   );
 }
 
-function ConsumingStarsWrapper() {
+function ConsumingStarsWrapper({ environment = "production" }) {
   return (
     <div className="absolute h-32 w-32 -top-1/4">
-      <ConsumingStarsCanvas />
+      <ConsumingStarsOffscreenCanvas environment={environment} />
     </div>
   );
 }
