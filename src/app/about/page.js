@@ -1,4 +1,3 @@
-import Image from "next/image";
 import StarryBackground from "@/components/StarryBackground";
 import DashedLine from "@/components/DashedLine";
 import DownloadButton from "@/app/about/components/DownloadButton";
@@ -16,7 +15,7 @@ export default function About() {
   return (
     <>
       <main className="relative w-full flex justify-center items-start sm:items-center lg:items-start pt-16 sm:pt-8 lg:pt-[9.6875rem] pb-28 sm:pb-28 lg:pb-16 px-4 sm:px-8 xl:px-0">
-        <div className="max-w-screen-sm w-full h-full flex flex-col gap-8 justify-start items-center">
+        <div className="max-w-screen-sm w-full h-full flex flex-col gap-8 justify-start items-center relative">
           <div className="w-full flex justify-between items-center">
             <div className="flex justify-start items-center gap-4">
               <ImageBadge />
@@ -44,11 +43,8 @@ export default function About() {
             </p>
           </div>
           <MobileSocialLinks />
-          <div className="w-full relative">
-            <DashedLine
-              direction="horizontal"
-              className="top-0 hidden sm:block"
-            />
+          <div className="w-full relative hidden sm:block">
+            <DashedLine direction="horizontal" className="top-0" />
           </div>
           <div className="w-full flex flex-col gap-4 text-neutral-700 dark:text-neutral-300 leading-7 relative">
             <WorkExperience />
@@ -61,7 +57,6 @@ export default function About() {
             <DashedLine
               direction="horizontal"
               className="block sm:hidden top-0 left-1/2 -translate-x-1/2"
-              gradient
             />
           </div>
           <div className="w-full flex flex-col gap-4 text-neutral-700 dark:text-neutral-300 leading-7 relative">
@@ -71,7 +66,6 @@ export default function About() {
             <DashedLine
               direction="horizontal"
               className="top-0 left-1/2 -translate-x-1/2"
-              gradient
             />
           </div>
         </div>
@@ -83,31 +77,26 @@ export default function About() {
 
 function MobileSocialLinks() {
   return (
-    <div className="w-[calc(100%+2rem)] grid sm:hidden grid-cols-4 relative">
+    <div className="w-full grid sm:hidden grid-cols-4 relative">
       <DashedLine
         direction="horizontal"
         className="top-0 left-1/2 -translate-x-1/2"
-        gradient
       />
-      <div className="aspect-square relative">
+      <div className="aspect-square">
         <MobileSocialLink type="github" />
-        <DashedLine direction="vertical" className="top-0 -right-px" />
       </div>
-      <div className="aspect-square relative">
+      <div className="aspect-square">
         <MobileSocialLink type="linkedin" />
-        <DashedLine direction="vertical" className="top-0 -right-px" />
       </div>
-      <div className="aspect-square relative">
+      <div className="aspect-square">
         <MobileSocialLink type="codepen" />
-        <DashedLine direction="vertical" className="top-0 -right-px" />
       </div>
-      <div className="aspect-square relative">
+      <div className="aspect-square">
         <MobileSocialLink type="artstation" />
       </div>
       <DashedLine
         direction="horizontal"
         className="bottom-0 left-1/2 -translate-x-1/2"
-        gradient
       />
     </div>
   );
