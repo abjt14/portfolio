@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import MenuWrapper from "./MenuWrapper";
 import { usePathname } from "next/navigation";
-// import ConsumingStars from "../ConsumingStars";
+import ConsumingStarsOffscreenCanvas from "./ConsumingStarsOffscreenCanvas";
 
 export default function MainMenu() {
   const links = React.useMemo(
@@ -28,7 +28,6 @@ export default function MainMenu() {
   );
 
   const path = usePathname();
-
   const isActive = React.useCallback(
     (href) => {
       if (path === "/") {
@@ -42,6 +41,7 @@ export default function MainMenu() {
   );
 
   const linkLightLayoutId = React.useId();
+  const environment = process.env.NODE_ENV;
 
   return (
     <MenuWrapper>
@@ -78,9 +78,7 @@ export default function MainMenu() {
               {isActive(link.href) && (
                 <>
                   <LinkLight layoutId={linkLightLayoutId + "link_light"} />
-                  {/* <ConsumingStarsWrapper
-                    layoutId={linkLightLayoutId + "consuming_stars"}
-                  /> */}
+                  <ConsumingStarsWrapper environment={environment} />
                 </>
               )}
             </motion.div>
@@ -111,18 +109,13 @@ export default function MainMenu() {
   );
 }
 
-// function ConsumingStarsWrapper({ layoutId }) {
-//   return (
-//     <motion.div
-//       key={layoutId}
-//       layoutId={layoutId}
-//       layout="position"
-//       className="absolute h-36 w-36 -top-1/4"
-//     >
-//       <ConsumingStars layoutId={layoutId} />
-//     </motion.div>
-//   );
-// }
+function ConsumingStarsWrapper({ environment = "production" }) {
+  return (
+    <div className="absolute h-32 w-32 -top-1/4">
+      <ConsumingStarsOffscreenCanvas environment={environment} />
+    </div>
+  );
+}
 
 function LinkLight({ layoutId }) {
   return (
