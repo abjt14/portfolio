@@ -23,11 +23,7 @@ function OneColumn() {
   return (
     <div className="flex flex-col justify-center items-start gap-4">
       {experiments.map((experiment, index) => (
-        <ExperimentPreview
-          key={index}
-          index={index + 1}
-          experiments={experiment}
-        />
+        <ExperimentPreview key={index} experiments={experiment} />
       ))}
     </div>
   );
@@ -45,20 +41,12 @@ function TwoColumns() {
     <div className="flex flex-row justify-center items-start gap-1">
       <div className="flex-1 flex flex-col gap-1">
         {leftColumn.map((experiment, index) => (
-          <ExperimentPreview
-            key={index}
-            index={index * 2 + 1}
-            experiments={experiment}
-          />
+          <ExperimentPreview key={index} experiments={experiment} />
         ))}
       </div>
       <div className="flex-1 flex flex-col gap-1">
         {rightColumn.map((experiment, index) => (
-          <ExperimentPreview
-            key={index}
-            index={index * 2 + 1}
-            experiments={experiment}
-          />
+          <ExperimentPreview key={index} experiments={experiment} />
         ))}
       </div>
     </div>
@@ -80,29 +68,17 @@ function ThreeColumns() {
     <div className="flex flex-row justify-center items-start gap-1">
       <div className="flex-1 flex flex-col gap-1">
         {leftColumn.map((experiment, index) => (
-          <ExperimentPreview
-            key={index}
-            index={index * 3 + 1}
-            experiments={experiment}
-          />
+          <ExperimentPreview key={index} experiments={experiment} />
         ))}
       </div>
       <div className="flex-1 flex flex-col gap-1">
         {middleColumn.map((experiment, index) => (
-          <ExperimentPreview
-            key={index}
-            index={index * 3 + 2}
-            experiments={experiment}
-          />
+          <ExperimentPreview key={index} experiments={experiment} />
         ))}
       </div>
       <div className="flex-1 flex flex-col gap-1">
         {rightColumn.map((experiment, index) => (
-          <ExperimentPreview
-            key={index}
-            index={index * 3 + 3}
-            experiments={experiment}
-          />
+          <ExperimentPreview key={index} experiments={experiment} />
         ))}
       </div>
     </div>

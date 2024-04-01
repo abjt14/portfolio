@@ -42,10 +42,7 @@ export default function Home() {
           <div className="hidden sm:block h-full w-32 p-0.5 relative">
             <VideoLink
               slug="radio-input"
-              videoSrc="/lab/radio-input/optimized-2.mp4"
-              backgroundSrc="/lab/radio-input/placeholder-2.webp"
-              width={540}
-              height={540}
+              variant="square"
               className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-300"
             />
           </div>
@@ -131,10 +128,7 @@ export default function Home() {
               <div className="p-0.5">
                 <VideoLink
                   slug="magnetic-button"
-                  videoSrc="/lab/magnetic-button/optimized-2.mp4"
-                  backgroundSrc="/lab/magnetic-button/placeholder-2.webp"
-                  width={540}
-                  height={540}
+                  variant="square"
                   className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>
@@ -159,10 +153,7 @@ export default function Home() {
               <div className="p-0.5">
                 <VideoLink
                   slug="searchlight"
-                  videoSrc="/lab/searchlight/optimized-2.mp4"
-                  backgroundSrc="/lab/searchlight/placeholder-2.webp"
-                  width={720}
-                  height={720}
+                  variant="square"
                   className="hidden sm:block opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-500"
                 />
                 <VideoLink
@@ -189,10 +180,7 @@ export default function Home() {
               <div className="p-0.5">
                 <VideoLink
                   slug="radio-input"
-                  videoSrc="/lab/radio-input/optimized-2.mp4"
-                  backgroundSrc="/lab/radio-input/placeholder-2.webp"
-                  width={540}
-                  height={540}
+                  variant="square"
                   className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>

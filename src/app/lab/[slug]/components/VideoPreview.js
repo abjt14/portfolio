@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-export default function VideoPreview({ slug, resolution, mobileOnly = false }) {
+export default function VideoPreview({ slug, preview, mobileOnly = false }) {
+  const { width, height, placeholder } = preview;
+  const aspectRatio = width / height;
   return (
     <div
       className={clsx(
@@ -8,7 +10,7 @@ export default function VideoPreview({ slug, resolution, mobileOnly = false }) {
         "w-full relative overflow-hidden rounded-xl border border-neutral-300 dark:border-neutral-850"
       )}
       style={{
-        aspectRatio: `${resolution.width} / ${resolution.height}`,
+        aspectRatio,
       }}
     >
       <video
@@ -16,21 +18,21 @@ export default function VideoPreview({ slug, resolution, mobileOnly = false }) {
         muted
         playsInline
         loop
-        src={`/lab/${slug}/optimized.mp4`}
-        width={resolution.width}
-        height={resolution.height}
+        src={`/lab/${slug}/base.mp4`}
+        width={width}
+        height={height}
         type="video/mp4"
         className="w-full h-auto relative z-20"
         preload="auto"
         style={{
-          aspectRatio: `${resolution.width} / ${resolution.height}`,
+          aspectRatio,
         }}
       />
       <div
         className="absolute top-0 left-0 h-full w-full bg-no-repeat bg-cover blur-xl z-10"
         style={{
-          backgroundImage: `url(/lab/${slug}/placeholder.webp)`,
-          aspectRatio: `${resolution.width} / ${resolution.height}`,
+          backgroundImage: `url(${placeholder})`,
+          aspectRatio,
         }}
       />
     </div>

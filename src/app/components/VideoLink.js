@@ -4,18 +4,29 @@ import clsx from "clsx";
 
 export default function VideoLink({
   slug,
-  width = 0,
-  height = 0,
-  videoSrc = "",
-  backgroundSrc = "",
+  variant = "base", // base, square
   className = "",
 }) {
-  const { name, resolution } = experiments.find(
+  const { name, preview } = experiments.find(
     (experiment) => experiment.slug === slug
   );
-  const aspectWidth = width !== 0 ? width : resolution.width;
-  const aspectHeight = height !== 0 ? height : resolution.height;
-  const aspectRatio = aspectWidth / aspectHeight;
+
+  const { width, height } = preview[variant];
+  const aspectRatio = width / height;
+
+  let videoSrc = "";
+  if (variant === "base") {
+    videoSrc = `/lab/${slug}/base.mp4`;
+  } else if (variant === "square") {
+    videoSrc = `/lab/${slug}/square.mp4`;
+  }
+
+  let backgroundSrc = "";
+  if (variant === "base") {
+    backgroundSrc = preview.base.placeholder;
+  } else if (variant === "square") {
+    backgroundSrc = preview.square.placeholder;
+  }
 
   return (
     <Link
@@ -37,10 +48,10 @@ export default function VideoLink({
           muted
           playsInline
           loop
-          width={aspectWidth}
-          height={aspectHeight}
+          width={width}
+          height={height}
           className="h-auto w-auto relative z-20 grayscale-0 sm:grayscale sm:hover:grayscale-0 transition-all duration-150"
-          src={videoSrc !== "" ? videoSrc : `/lab/${slug}/optimized.mp4`}
+          src={videoSrc}
           style={{
             aspectRatio,
           }}
@@ -48,10 +59,7 @@ export default function VideoLink({
         <div
           className="absolute top-0 left-0 h-full w-full bg-no-repeat bg-cover blur-xl z-10"
           style={{
-            backgroundImage:
-              backgroundSrc !== ""
-                ? backgroundSrc
-                : `url(/lab/${slug}/placeholder.webp)`,
+            backgroundImage: `url(${backgroundSrc})`,
             aspectRatio,
           }}
         />

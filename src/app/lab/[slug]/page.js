@@ -40,7 +40,7 @@ export default function Experiment({ params }) {
     name,
     date,
     type,
-    resolution,
+    preview,
     mdx,
     technologies,
     href,
@@ -91,10 +91,10 @@ export default function Experiment({ params }) {
               desktopOnly={attributes?.pointerDeviceOnly}
             />
           ) : (
-            <VideoPreview slug={slug} resolution={resolution} />
+            <VideoPreview slug={slug} preview={preview.base} />
           )}
           {attributes?.pointerDeviceOnly && (
-            <VideoPreview slug={slug} resolution={resolution} mobileOnly />
+            <VideoPreview slug={slug} preview={preview.base} mobileOnly />
           )}
           <TechnologiesList technologies={technologies} />
           {attributes?.pointerDeviceOnly && <PointerDeviceWarning />}

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { formatDate } from "@/helpers/date";
 
-export default function ExperimentPreview({ experiments, index = 0 }) {
-  const { slug, name, resolution, date } = experiments;
+export default function ExperimentPreview({ experiments }) {
+  const { slug, name, preview, date } = experiments;
 
   let href = "";
   let target = "_self";
@@ -14,6 +14,11 @@ export default function ExperimentPreview({ experiments, index = 0 }) {
     target = "_blank";
     externalIcon = true;
   }
+  const resolution = {
+    width: preview.base.width,
+    height: preview.base.height,
+  };
+  const { placeholder } = preview.base;
 
   return (
     <Link
@@ -21,10 +26,6 @@ export default function ExperimentPreview({ experiments, index = 0 }) {
       href={href}
       target={target}
       className="w-full h-auto group rounded-xl outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
-      style={{
-        animationDelay: `${index * 50}ms`,
-        transform: "translateZ(0)",
-      }}
     >
       <div className="w-full h-auto p-1 rounded-xl bg-gradient-to-t from-neutral-300 dark:from-neutral-850 to-neutral-200 dark:to-neutral-925 border border-neutral-300 dark:border-neutral-850">
         <div
@@ -38,7 +39,7 @@ export default function ExperimentPreview({ experiments, index = 0 }) {
             muted
             playsInline
             loop
-            src={`/lab/${slug}/optimized.mp4`}
+            src={`/lab/${slug}/base.mp4`}
             width={resolution.width}
             height={resolution.height}
             type="video/mp4"
@@ -48,9 +49,9 @@ export default function ExperimentPreview({ experiments, index = 0 }) {
             }}
           />
           <div
-            className="absolute top-0 left-0 h-full w-full bg-no-repeat bg-cover blur-xl z-10"
+            className="absolute top-0 left-0 h-full w-full bg-no-repeat bg-cover blur-lg z-10"
             style={{
-              backgroundImage: `url(/lab/${slug}/placeholder.webp)`,
+              backgroundImage: `url(${placeholder})`,
             }}
           />
           <div className="absolute top-0 left-0 h-full w-full z-30 bg-gradient-to-b opacity-75 from-transparent from-0% to-neutral-925 group-hover:opacity-95 transition-all duration-300" />
