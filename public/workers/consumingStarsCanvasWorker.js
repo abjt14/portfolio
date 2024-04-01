@@ -33,7 +33,6 @@ class ConsumingStarsCanvas {
 
 class Circle {
   constructor(ctx, dimension) {
-    this.id = Math.random();
     this.ctx = ctx;
     this.dimension = dimension;
     const angle = Math.random() * Math.PI + Math.PI;
@@ -62,7 +61,6 @@ class Circle {
     if (this.timestamp < this.delay) {
       return;
     }
-    console.log(this.id);
 
     // move towards center of the canvas
     const dx = this.dimension / 2 - this.x;
