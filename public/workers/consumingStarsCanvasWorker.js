@@ -45,7 +45,7 @@ class Circle {
     this.radius = (Math.random() * this.dimension) / 100;
     this.color = "rgba(255, 255, 255, 0)";
     this.timestamp = 0;
-    this.speed = ((0.03125 + Math.random()) * this.dimension) / 100;
+    this.speed = (((0.03125 + Math.random()) * this.dimension) / 100) * 2;
     this.delay = Math.random() * Math.random() * 4 + 1;
   }
 
@@ -100,8 +100,8 @@ let lastRender = 0;
 function render(timestamp) {
   const delta = timestamp - lastRender;
 
-  // limit to 60 fps
-  if (delta >= 1000 / 60) {
+  // limit to 30 fps
+  if (delta >= 1000 / 30) {
     consumingStarsCanvas.draw(timestamp / 1000);
     lastRender = timestamp;
   }
