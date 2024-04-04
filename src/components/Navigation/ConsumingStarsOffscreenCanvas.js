@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
+import { ThemeContext } from "@/context/ThemeProvider";
+import clsx from "clsx";
 
 const ConsumingStarsOffScreenCanvas = ({ environment = "production" }) => {
   const canvasRef = React.useRef(null);
   const [counter, setCounter] = React.useState(0);
+
+  const { theme } = React.useContext(ThemeContext);
 
   React.useEffect(() => {
     if (environment === "development" && counter === 0) {
@@ -34,7 +38,15 @@ const ConsumingStarsOffScreenCanvas = ({ environment = "production" }) => {
     };
   }, [environment, counter]);
 
-  return <canvas ref={canvasRef} className="w-full h-full z-50" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className={clsx(
+        "w-full h-full z-50",
+        theme === "light" ? "invert" : "invert-0"
+      )}
+    />
+  );
 };
 
 export default React.memo(ConsumingStarsOffScreenCanvas);
