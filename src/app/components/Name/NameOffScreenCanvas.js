@@ -10,6 +10,7 @@ const name_small_svg =
 
 function NameOffScreenCanvas({
   isMobile = false,
+  isLoaded,
   setIsLoaded,
   environment = "production",
 }) {
@@ -119,6 +120,7 @@ function NameOffScreenCanvas({
     setIsLoaded(true);
 
     return () => {
+      setIsLoaded(false);
       canvas.removeEventListener("click", handleModeToggle);
       if (!isMobile) {
         handleMouseMove &&
@@ -142,7 +144,8 @@ function NameOffScreenCanvas({
       ref={canvasRef}
       className={clsx(
         "w-full h-auto cursor-pointer aspect-[700/329] sm:aspect-[2304/384] touch-none select-none",
-        isMobile ? "block sm:hidden" : "hidden sm:block"
+        isMobile ? "block sm:hidden" : "hidden sm:block",
+        isLoaded ? "opacity-100" : "opacity-0"
       )}
     />
   );

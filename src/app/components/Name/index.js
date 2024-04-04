@@ -45,12 +45,14 @@ export default function Name() {
       {breakpoint === "xs" && (
         <NameOffScreenCanvas
           isMobile
+          isLoaded={isLoaded}
           setIsLoaded={setIsLoaded}
           environment={environment}
         />
       )}
       {breakpoint === "sm" && (
         <NameOffScreenCanvas
+          isLoaded={isLoaded}
           setIsLoaded={setIsLoaded}
           environment={environment}
         />
