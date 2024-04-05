@@ -61,11 +61,14 @@ export default function RootLayout({ children }) {
       lang="en"
       className={clsx(
         theme,
-        "overflow-x-hidden antialiased",
+        "overflow-x-hidden antialiased ",
         GeistSans.variable,
         GeistMono.variable
       )}
       data-color-theme={theme}
+      style={{
+        scrollbarGutter: "stable",
+      }}
     >
       <body className="text-neutral-950 dark:text-neutral-50 font-geistsans bg-neutral-200 dark:bg-neutral-925 relative overflow-x-hidden z-10">
         <ThemeProvider initialTheme={theme}>
