@@ -11,6 +11,7 @@ import Tooltip from "./components/Tooltip";
 import MDXHeading from "./components/MDXHeading";
 import DashedLine from "../DashedLine";
 import MDXCode from "./components/MDXCode";
+import { TweetComponent } from "./components/Tweet";
 
 const components = {
   h1: MDXHeading(1),
@@ -24,6 +25,7 @@ const components = {
   MDXVideo,
   Tooltip,
   pre: MDXCode,
+  Tweet: TweetComponent,
 };
 
 function getPost(slug, type) {
