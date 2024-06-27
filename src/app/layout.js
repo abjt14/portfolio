@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={clsx(
         theme,
-        "overflow-x-hidden antialiased ",
+        "overflow-x-hidden antialiased",
         GeistSans.variable,
         GeistMono.variable
       )}

@@ -17,3 +17,7 @@
 [data-color-theme="light"] *::selection {
   @apply !bg-neutral-950 !text-neutral-50;
 }
+
+.no-transition * {
+  transition-duration: 0s !important;
+}

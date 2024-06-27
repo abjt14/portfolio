@@ -9,6 +9,7 @@ import useSound from "use-sound";
 
 export default function ThemeControl() {
   const { theme, handleChange } = React.useContext(ThemeContext);
+  const [trigger, setTrigger] = React.useState(false);
 
   const { soundEnabled } = React.useContext(SoundContext);
   const [playSwitchOn] = useSound("/sounds/theme-switch/on.mp3", {
@@ -19,6 +20,10 @@ export default function ThemeControl() {
   });
 
   function handleClick() {
+    // add the no-transition class to prevent the transition effect on any element when the theme is changed
+    document.documentElement.classList.add("no-transition");
+    setTrigger(true);
+
     handleChange();
     if (soundEnabled) {
       if (theme === "dark") {
@@ -28,6 +33,15 @@ export default function ThemeControl() {
       }
     }
   }
+
+  // remove the no-transition class after the theme has been changed
+  React.useEffect(() => {
+    if (trigger) {
+      setTrigger(false);
+    } else {
+      document.documentElement.classList.remove("no-transition");
+    }
+  }, [trigger]);
 
   return (
     <div className="bg-neutral-200 dark:bg-neutral-800 p-px rounded-full relative shadow-sm shadow-neutral-400 dark:shadow-black z-0 shrink-0">
