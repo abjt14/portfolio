@@ -27,7 +27,7 @@ function NameOffScreenCanvas({
 
     // set up webgl canvas worker
     const offscreenCanvas = canvas.transferControlToOffscreen();
-    const nameCanvasWorker = new Worker("workers/nameCanvasWorker.js", {});
+    const nameCanvasWorker = new Worker("/workers/nameCanvasWorker.js", {});
     nameCanvasWorker.postMessage(
       {
         command: "init",

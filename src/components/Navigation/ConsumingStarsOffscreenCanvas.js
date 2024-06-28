@@ -21,7 +21,7 @@ const ConsumingStarsOffScreenCanvas = ({ environment = "production" }) => {
     // set up webgl canvas worker
     const offscreenCanvas = canvas.transferControlToOffscreen();
     const consumingStarsCanvasWorker = new Worker(
-      "workers/consumingStarsCanvasWorker.js",
+      "/workers/consumingStarsCanvasWorker.js",
       {}
     );
     consumingStarsCanvasWorker.postMessage(
