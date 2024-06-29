@@ -4,7 +4,7 @@ article h3,
 article h4,
 article h5,
 article h6 {
-  @apply font-semibold mt-6 text-neutral-950 dark:text-neutral-200;
+  @apply font-medium mt-6 text-neutral-950 dark:text-neutral-200;
 }
 
 article h1 {
@@ -18,15 +18,15 @@ article h3,
 article h4,
 article h5,
 article h6 {
-  @apply text-base font-normal;
+  @apply text-base;
 }
 
 article a {
-  @apply outline-none underline underline-offset-4 decoration-clone decoration-neutral-400 dark:decoration-neutral-700 hover:decoration-neutral-600 dark:hover:decoration-neutral-500 transition-all duration-150;
+  @apply outline-none underline underline-offset-4 decoration-clone decoration-neutral-400 dark:decoration-neutral-700 hover:decoration-neutral-600 dark:hover:decoration-neutral-300 transition-all duration-75;
 }
 
 article a:focus-visible {
-  @apply decoration-neutral-600 dark:decoration-neutral-500;
+  @apply decoration-neutral-600 dark:decoration-neutral-300;
 }
 
 article ul,
