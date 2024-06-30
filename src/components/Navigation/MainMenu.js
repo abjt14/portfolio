@@ -60,10 +60,11 @@ export default function MainMenu() {
           >
             <span
               className={clsx(
-                "text-sm sm:text-sm z-30",
+                "text-sm sm:text-sm z-30 block",
                 "[text-shadow:_0_0_1.25rem_rgba(10,10,10,0)] dark:[text-shadow:0_0_0.75rem_rgba(250,250,250,0)]",
                 "group-hover:[text-shadow:_0_0_1.25rem_rgba(10,10,10,1)] dark:group-hover:[text-shadow:0_0_0.75rem_rgba(250,250,250,1)]",
-                "transition-[text-shadow] duration-300",
+                "group-active:scale-95",
+                "transition-[text-shadow, transform] duration-300",
                 isActive(link.href) &&
                   "[text-shadow:_0_0_1.25rem_rgba(10,10,10,1)] dark:[text-shadow:0_0_0.75rem_rgba(250,250,250,1)]"
               )}
