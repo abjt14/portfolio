@@ -7,7 +7,9 @@ export default function ProjectLink({ href, name, type }) {
       href={href}
       target="_blank"
       className="h-[calc(100%-2px)] bg-neutral-200 dark:bg-neutral-800 p-px rounded-full relative shadow-sm shadow-neutral-400 dark:shadow-black group outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
-      aria-label={`visit ${name}`}
+      aria-label={
+        type == "production" ? `visit ${name}` : `view ${name} on CodePen`
+      }
     >
       <div
         className={clsx(
@@ -24,7 +26,8 @@ export default function ProjectLink({ href, name, type }) {
             "transition-[text-shadow] duration-150"
           )}
         >
-          {type == "production" ? "Production" : "CodePen"}
+          {type == "production" && "Production"}
+          {type == "codepen" && "CodePen"}
         </span>
         <svg
           viewBox="0 0 24 24"
