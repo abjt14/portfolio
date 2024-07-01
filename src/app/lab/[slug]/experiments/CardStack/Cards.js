@@ -66,7 +66,7 @@ export default function CardStack({ children, options = {} }) {
         )}
       >
         {Array.from({ length: cardCount }).map((_, index) => {
-          return <ScrollableCard key={index} />;
+          return <ScrollableCard key={index} index={index} />;
         })}
       </div>
       <div
@@ -94,7 +94,7 @@ export default function CardStack({ children, options = {} }) {
   );
 }
 
-function ScrollableCard() {
+function ScrollableCard({ index }) {
   return (
     <Link
       href="#"
@@ -103,6 +103,7 @@ function ScrollableCard() {
       style={{
         flex: "1 0 100%",
       }}
+      aria-label={`scrollable card ${index + 1}`}
     />
   );
 }
