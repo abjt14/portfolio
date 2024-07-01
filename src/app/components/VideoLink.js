@@ -50,7 +50,7 @@ export default function VideoLink({
           loop
           width={width}
           height={height}
-          className="h-auto w-auto relative z-20 grayscale-0 sm:grayscale sm:hover:grayscale-0 transition-all duration-300"
+          className="h-auto w-auto relative z-20 grayscale-0 sm:grayscale sm:hover:grayscale-0 transition-all duration-500"
           src={videoSrc}
           style={{
             aspectRatio,

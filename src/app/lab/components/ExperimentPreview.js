@@ -54,7 +54,7 @@ export default function ExperimentPreview({ experiments }) {
               backgroundImage: `url(${placeholder})`,
             }}
           />
-          <div className="absolute top-0 left-0 h-full w-full z-30 bg-gradient-to-b opacity-75 from-transparent from-0% to-neutral-925 group-hover:opacity-95 transition-all duration-300" />
+          <div className="absolute top-0 left-0 h-full w-full z-30 bg-gradient-to-b opacity-75 from-transparent from-0% to-neutral-925 group-hover:opacity-95 transition-all duration-500" />
           <div className="absolute top-0 left-0 h-full w-full z-40">
             <div className="p-3 sm:p-4 w-full h-full flex justify-between items-end">
               <div className="text-xs sm:text-sm text-neutral-300 flex gap-1 justify-start items-center">
