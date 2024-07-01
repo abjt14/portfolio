@@ -16,7 +16,7 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src 'self' https://*.abjt.dev;
+  media-src 'self' https://*.abjt.dev https://video.twimg.com;
   connect-src *;
   font-src 'self';
 `;
