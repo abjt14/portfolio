@@ -14,6 +14,7 @@ export default function MDXHeading(level) {
           href: `#${slug}`,
           key: `link-${slug}`,
           className: "anchor",
+          "aria-label": `go to ${children} section`,
         }),
       ],
       children
