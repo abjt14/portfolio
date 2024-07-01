@@ -1,9 +1,34 @@
 export const experiments = [
   {
+    slug: "card-stack",
+    name: "Card Stack",
+    type: "internal",
+    href: {
+      url: "https://codepen.io/abjt14/details/WNBVrNG",
+      type: "codepen",
+    },
+    preview: {
+      base: {
+        type: "video",
+        width: 540,
+        height: 540,
+        placeholder:
+          "data:image/webp;base64,UklGRrwFAABXRUJQVlA4WAoAAAAgAAAARwAARwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggzgMAAFAUAJ0BKkgASAA+KRCHQiGhCpWC0gwBQliAHkt9k/Iz2XqQ/SPwjku/OL+T/MDsAeK300/NB+uH7AeoB6GH929wD+l/wDrSfQA/gH839Nf2WP2n/Yj2e7oBXpMKz/qvSmmRzTSMtlLQA2RxpcDwGroNhpBaPgKucJORq/f1d9t/DeuePCm4si0qLGIdBkaQlQXHXmCPXXYbXwJ8OMWohDEVYUJWKrMlGJ6poAD+/xghon8aUUwhdsVTTHR3xqezvv+MudDif/BTMhJ+eutpVUV3EBsiHNcbn13m//7n7wLqyj/zAfMexN8ZML+H+Tb365f8J6yMD9QsVXum0InE1Nk+PjX7BH5oBIcHg/y1IfN/Te/5hexfPfj+um3u9bFNmzXpww3I+vbRhERcR8yqbf+vz7bRrfDAKZI8NqFlOQuDkUPTthdNHICl7JNOwsElO0FyJY8A4gX5FAFa/c+Oj2Kq5IPgd9XYIrRW08bKWgSlhtKX+r9Mvc+bvJSt/8Cowlo3bILHB/QZvIw16GqPU9dbVEo///70sv9/dOYxGNc2qIvZyR8Lfg9N9Xx/jSIKW6LWBcUvRmb+Ub/rnoZH/yDn+ZRsbXwE/N3rrfq6OQhvD0d1C+jHXP5gLCwB2J3kX/QmSc4j4NnDqTfoIh8hP81delWnrqjOLBRHKTL3OplAArDoO7Efv4vfZNf6hyEU6LKLS/lVe5IknkGX7L7sF/47azC6yL//1k2dedXq1aZ+W/Mj/RSbZKYVj9Ur407wymzd/bu1c5BgfmgTBVkuEms5wZmw8KzUXqYfqiepa07Na1nullV4whwpS5VlQgfukPbv8iWB5w/ChfiAcDi5pIbUmw2x6+z6mwjqoGcAhh1ufJ5sS6Pb80mgfqsjyflf8St74NQzphP5VvuvE4PvrG/6ARKPtQ+6sfAfYit0vYsf0R/PKZLS4/Z7ou8biOn1jTT/A/bEP8X9XbU3ibzD2JSm4BbFENIGmUBp3zdJ+Ykegrb83baE7OqRqoAiYq715TaMT1iVofyY78VT77ZFCxEUEf1I5bQHrv0rZVG41nTeHXI1bpGU5dGMDJaTtT9aDejT4hDS9p8VsS8ac7e7N+zTnr0RNOe9A4w047gqFpbDnweM3L0/sghpnfs3ZtXpl0J2t9882kbF/t/Dj3na64QILXYygH2XegyEXgRlqjP3sPRs/wL3oP+q1avkXJetjk2J9r2CTvcYR0nQ9PTJTVwp/2WTKIIWjO7hHk4EQsCgS4H5+OsJHEpKZkINtNfz54+qshFtlBgMF2caAAAA",
+      },
+    },
+    date: "2024-07-22",
+    mdx: true,
+    technologies: ["HTML", "CSS", "JavaScript"],
+    attributes: null,
+  },
+  {
     slug: "polyrhythmic-rings",
     name: "Polyrhythmic Rings",
     type: "external",
-    href: "https://polyrhythmic-rings.vercel.app/",
+    href: {
+      url: "https://polyrhythmic-rings.vercel.app/",
+      type: "production",
+    },
     preview: {
       base: {
         type: "video",
@@ -100,7 +125,10 @@ export const experiments = [
     slug: "agamjeet",
     name: "Agamjeet's Blog",
     type: "external",
-    href: "https://www.agamjeet.com/",
+    href: {
+      url: "https://www.agamjeet.com/",
+      type: "production",
+    },
     preview: {
       base: {
         type: "video",
@@ -126,7 +154,10 @@ export const experiments = [
     slug: "searchlight",
     name: "Searchlight",
     type: "internal",
-    href: "https://codepen.io/abjt14/pen/zYmKzbV",
+    href: {
+      url: "https://codepen.io/abjt14/pen/zYmKzbV",
+      type: "codepen",
+    },
     preview: {
       base: {
         type: "video",
@@ -152,7 +183,10 @@ export const experiments = [
     slug: "laser-progress-beam",
     name: "Laser Progress Beam",
     type: "internal",
-    href: "https://codepen.io/abjt14/pen/rNqMwPR",
+    href: {
+      url: "https://codepen.io/abjt14/pen/rNqMwPR",
+      type: "codepen",
+    },
     preview: {
       base: {
         type: "video",
@@ -171,7 +205,10 @@ export const experiments = [
     slug: "border-highlight",
     name: "Border Highlight",
     type: "internal",
-    href: "https://codepen.io/abjt14/pen/wvYzeNP",
+    href: {
+      url: "https://codepen.io/abjt14/pen/wvYzeNP",
+      type: "codepen",
+    },
     preview: {
       base: {
         type: "video",
@@ -190,7 +227,10 @@ export const experiments = [
     slug: "bongo-copy-cat",
     name: "Bongo Copy Cat",
     type: "external",
-    href: "https://github.com/abjt14/bongo-copy-cat",
+    href: {
+      url: "https://github.com/abjt14/bongo-copy-cat",
+      type: "github",
+    },
     preview: {
       base: {
         type: "video",
@@ -209,7 +249,10 @@ export const experiments = [
     slug: "portfolio-v5",
     name: "Portfolio v5",
     type: "external",
-    href: "https://portfolio-v5-abjt14.vercel.app/",
+    href: {
+      url: "https://portfolio-v5-abjt14.vercel.app/",
+      type: "production",
+    },
     preview: {
       base: {
         type: "video",
@@ -228,7 +271,10 @@ export const experiments = [
     slug: "endless-burrito",
     name: "Endless Burrito",
     type: "external",
-    href: "https://abjt14.github.io/endless-burrito/",
+    href: {
+      url: "https://abjt14.github.io/endless-burrito/",
+      type: "production",
+    },
     preview: {
       base: {
         type: "video",
@@ -247,7 +293,10 @@ export const experiments = [
     slug: "portfolio-v4",
     name: "Portfolio v4",
     type: "external",
-    href: "https://portfolio-v4-abjt14.vercel.app/",
+    href: {
+      url: "https://portfolio-v4-abjt14.vercel.app/",
+      type: "production",
+    },
     preview: {
       base: {
         type: "video",
