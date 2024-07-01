@@ -127,9 +127,13 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-0 sm:block">
               <div className="p-0.5">
                 <VideoLink
+                  slug="card-stack"
+                  className="block sm:hidden opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
+                />
+                <VideoLink
                   slug="magnetic-button"
                   variant="square"
-                  className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
+                  className="hidden sm:block opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>
               <div></div>
@@ -152,12 +156,12 @@ export default function Home() {
               <div></div>
               <div className="p-0.5">
                 <VideoLink
-                  slug="searchlight"
-                  variant="square"
+                  slug="card-stack"
                   className="hidden sm:block opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-500"
                 />
                 <VideoLink
-                  slug="hold-to-submit"
+                  slug="magnetic-button"
+                  variant="square"
                   className="block sm:hidden opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>
@@ -179,8 +183,7 @@ export default function Home() {
             <div className="grid grid-cols-2 sm:hidden">
               <div className="p-0.5">
                 <VideoLink
-                  slug="radio-input"
-                  variant="square"
+                  slug="hold-to-submit"
                   className="opacity-100 sm:opacity-0 sm:animate-fade-zoom-in-300 !animation-delay-400"
                 />
               </div>
