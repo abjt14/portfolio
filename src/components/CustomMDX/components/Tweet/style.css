@@ -75,3 +75,7 @@
 .tweet div[class*="mediaWrapper"] {
   max-height: 250px;
 }
+
+.tweet > div > div {
+  max-width: none !important;
+}
