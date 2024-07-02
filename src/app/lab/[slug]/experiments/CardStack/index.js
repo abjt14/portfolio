@@ -34,25 +34,17 @@ export default function CardStack({ demo = false }) {
     },
   });
 
-  const gradients = [
-    "https://images.unsplash.com/photo-1579546928937-641f7ac9bced?w=270",
-    "https://images.unsplash.com/photo-1604076913837-52ab5629fba9?w=270",
-    "https://images.unsplash.com/photo-1550859492-d5da9d8e45f3?w=270",
-    "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=270",
-    "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=270",
-    "https://images.unsplash.com/photo-1604079628040-94301bb21b91?w=270",
-    "https://images.unsplash.com/photo-1614849286521-4c58b2f0ff15?w=270",
-  ];
-
   return (
     <>
       <Cards options={options}>
-        {[...gradients].map((image, index) => (
+        {[...Array(7)].map((_, index) => (
           <div
             key={"card-content-" + index}
             className="bg-cover bg-center w-32 h-40 shadow-lg shadow-neutral-350 dark:shadow-neutral-950 rounded-2xl bg-black dark:bg-white"
             style={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(/lab/card-stack/assets/images/${
+                index + 1
+              }.jpeg)`,
             }}
           />
         ))}
