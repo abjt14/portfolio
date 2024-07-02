@@ -79,3 +79,11 @@
 .tweet > div > div {
   max-width: none !important;
 }
+
+.dark .tweet p a {
+  color: rgb(229 228 226) !important;
+}
+
+.tweet p a {
+  color: rgb(10 9 7) !important;
+}
