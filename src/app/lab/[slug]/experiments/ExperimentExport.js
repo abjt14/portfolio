@@ -1,12 +1,24 @@
+import clsx from "clsx";
 import BorderHighlight from "./BorderHighlight";
 import LaserProgressBeam from "./LaserProgressBeam";
 import Searchlight from "./Searchlight";
 import MagneticButton from "./MagneticButton";
 import RadioInput from "./RadioInput";
 import HoldToSubmit from "./HoldToSubmit";
-import clsx from "clsx";
+import CardStack from "./CardStack";
 
 export default function ExperimentExport({ slug, desktopOnly = false }) {
+  if (slug === "card-stack") {
+    return (
+      <ExperimentWrapper
+        className="!p-0"
+        theme="both"
+        desktopOnly={desktopOnly}
+      >
+        <CardStack />
+      </ExperimentWrapper>
+    );
+  }
   if (slug === "hold-to-submit") {
     return (
       <ExperimentWrapper

@@ -1,0 +1,140 @@
+Carousels have been around on the web for a very long time. By the time I wrote my first `printf("hello world")`, I would see a sliding set of images with a "next" and "previous" button on almost every website, from e-commerce websites to social media platforms. While this outdated design may be a rarity in modern user interfaces, designers have innovated fresh perspectives that push the boundaries of what a carousel can be.
+
+Recently, I stumbled upon an interesting thread on Twitt...sorry I mean X, discussing an issue with how the swipeable photo card stack works in iMessage. When we swipe a card to go to the next image, it switches its `z-index` midway halfway through the action, abruptly jumping behind the next card. It is an inconsistent and unintuitive experience from an otherwise polished and industry-leading design system.
+
+<Tweet id="1539793728277479424" />
+
+The user recommended that we should rotate the cards along their `y-axis` as the swipe action progresses and we reach the halfway point. The prototyped solution is an impressively intuitive and visually appealing card stack that feels more natural and consistent. As others felt the same, one decided to implement it in Facebook Origami Studio. The user has documented and discussed the process in this thread, including a challenge to build it using native scroll-driven gestures for the web.
+
+<Tweet id="1795133452016054401" />
+
+My initial thoughts on recreating this for the web involved using Framer Motion, but considering the complexity of the interaction and the need for a performant solution that is close to native, I decided to use plain HTML, CSS, and JavaScript.
+
+While I was still sticking with the idea of using JavaScript to control the majority of the transitions, I caught a peak of something more interesting in my tall list of projects I want to build, experiments I want to try, and stories I want to tell. The CSS Scroll Snap API has been available for a while now with solid <Link href="https://caniuse.com/?search=scroll-snap" target="_blank">browser support</Link>, and coincidentally, this was the perfect opportunity to check it out.
+
+### Scroll Snap
+
+The `scroll-snap-type` property in CSS defines how strictly snap points are enforced on the scroll container if it has children with snap points. The two attributes we define here are the axis along which we want the snapping to occur and the strictness rule for snapping when "the scroll action has completed".
+
+That last part is not the same as when "the user stops scrolling", I'll explain this in a bit.
+
+```css
+#scrollable-container {
+  scroll-snap-type: x mandatory;
+}
+
+.scrollable-card {
+  scroll-snap-align: start;
+}
+```
+
+The value `x` indicates that the snapping needs to only the x-axis. The value `mandatory` defines the strictness parameter of the property. The default value is `proximity`, which means the browser will snap to the nearest snap point when it's within a certain range, determined by the browser engine itself. The value `mandatory` tells the browser to always snap to the nearest snap point, when "the scroll action has completed".
+
+The `scroll-snap-align` property defines the alignment of the snap point within the element. The value `start` indicates that the start of the element should be aligned with the snap point. The other two options are `center` and `end`.
+
+<MDXVideo
+  src="/lab/card-stack/videos/scroll-snap-stop-normal.mp4"
+  alt="the scroll always snaps to the nearest snap point when the scroll action has completed"
+  width={1600}
+  height={800}
+  poster="/lab/card-stack/videos/scroll-snap-stop-normal.webp"
+/>
+
+Coming back to the distinction I mentioned earlier. When I said "the scroll action has been completed", I meant that when the browser has no more pending scroll updates, the CSS properties we applied will tell the browser to snap onto the nearest snap point.
+
+This is different from when "the user stops scrolling", which would mean that the browser would snap to the nearest snap point when the user has stopped the scrolling action. This is a subtle but important distinction to make. Luckily, the `scroll-snap-stop` property allows us to control this behavior. The default value of `scroll-snap-stop` is `normal`, which means the browser will snap to the nearest snap point when the browser has finished scrolling.
+
+Instead, the value `always` tells the browser to make the nearest snap point the final resting position when "the user stops scrolling". An added bonus is that the browser natively takes care of the easing for us.
+
+```css
+.scrollable-card {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+```
+
+<MDXVideo
+  src="/lab/card-stack/videos/scroll-snap-stop-always.mp4"
+  alt='"scroll-snap-stop" set to "always"'
+  width={1600}
+  height={800}
+  parentClassName="!mt-2"
+  poster="/lab/card-stack/videos/scroll-snap-stop-always.webp"
+/>
+
+### Active Card
+
+One of the trickier challenges I faced was figuring out a logic to find out which card is currently active. Since we're relying solely on the scroll progress for all of the transitions, we need to calculate the active card based on that. This is important because the active card's animation includes the main swipe animation when the user interacts with the card stack.
+
+Let's assume that each card is moving one unit at a time. The active card can go from `0 -> 1` or `0 -> -1`. The adjacent card will go from either `1 -> 0` or `-1 -> 0` based on its location relative to the active card. The initial idea was to switch when the active card reached `0.5` or `-0.5`, but this did not work as expected. If the user is still interacting with the card stack and decides to undo the progress, the active card should not be changed. So we focus on the scroll direction to determine when the user has scrolled past the whole card.
+
+```js
+const relativeScrollPerCard = 1 / (this.cardCount - 1);
+
+const previousScrollSnapPoint = relativeScrollPerCard * (this.activeIndex - 1);
+
+const nextScrollSnapPoint = relativeScrollPerCard * (this.activeIndex + 1);
+
+if (
+  this.globalScrollProgress <= previousScrollSnapPoint &&
+  this.activeIndex > 0
+) {
+  this.activeIndex = this.activeIndex - 1;
+} else if (
+  this.globalScrollProgress >= nextScrollSnapPoint &&
+  this.activeIndex < this.cardCount - 1
+) {
+  this.activeIndex = this.activeIndex + 1;
+}
+```
+
+While this solution may seem simple at first site, what makes this work well is the `scroll-snap-stop: always;` property we applied in our CSS. Browsers throttle some of the user events to optimize performance, and in this case, if a user scrolls very fast, the browser will not trigger enough events for us to know when the active card has changed. This can cause unexpected visual issues. But this CSS property ensures that the user will either always stop at the snap point, or slowly scroll by the same. Moving on, now that we know we can conditionally identify the type of our cards, we can animate the them based on the scroll progress.
+
+### Perspective
+
+One of the most under-utilized and under-appreciated CSS properties is `perspective`. It's a property that defines the distance between the `z=0` plane and the user. It is used in conjunction with the `transform` property to give a sense of depth to an element. The further the element is from the user, the more pronounced the transformations will be, thus creating a 3D effect.
+
+Since the cards are constantly moving and rotating through the z-axis, we can use the `perspective` property to give a sense of depth to the card stack.
+
+<MDXVideo
+  src="/lab/card-stack/videos/perspective.mp4"
+  alt="without perspective property vs perspective set to 768px"
+  width={2160}
+  height={1080}
+  poster="/lab/card-stack/videos/perspective.webp"
+/>
+
+Another little quality-of-life improvement I made was to hide cards that are very deep in the stack. You'll notice that in our demo we have 7 cards, and the ones that are more than 5 cards away from the active card are hidden. They fade in as they come within a set active range, all based on the scroll progress. Moreover, limiting the number of cards rendered at a time also limits the number of complex calculations performed at every scroll event, maintaining high performance even with a large number of cards.
+
+### Putting It All Together
+
+Here's a demo to show how the CSS properties effect the animation. You can toggle the individual CSS properties and interact with the card stack to see how it behaves.
+
+<ComponentWrapper className="flex-col sm:flex-row gap-4 sm:gap-0 !px-0 !pb-0 pt-8 sm:!p-0">
+  <CardStack demo={true} />
+</ComponentWrapper>
+
+<Information title="Horizontal scrolling with a mouse?">
+  <span>If you're wondering how to use your mouse wheel to scroll through the cards,
+  hold the "shift" key on your keyboard while scrolling.</span>
+
+<span>
+  This is not a feature I implemented, but a native browser behavior that allows
+  you to scroll horizontally using your mouse wheel.
+</span>
+
+</Information>
+
+### Limitations
+
+One of the features I wanted to implement was to allow users to use drag to scroll when using a mouse. The approach was to use the `mousedown` event to track the initial position of the mouse, and then use the `mousemove` event to calculate the distance the mouse has moved. This would then be used to update the scroll position of the container.
+
+The issue I encountered was that when we use JavaScript to scroll the container, the CSS Scroll Snap would trigger at every mouse drag event and instantly snap to the nearest snap point. To prevent that, I tried to disable the CSS Scroll Snap when the user was dragging their mouse, and then re-enable it when the user stopped. Unfortunately, when the CSS property is applied to the container, the snapping is instant instead of an eased transition.
+
+### Closing Thoughts
+
+This was one of the most fun projects I've worked on in a while. I'm glad that I got the opportunity to implement the Scroll Snap API in such a creative fashion. While I fell in love with Framer Motion just a while ago and am eager to use it in every project, experiments like these showcase how powerful the native APIs can be, and how much the web standards have progressed.
+
+### Acknowledgements
+
+A huge shoutout goes to <Link href="https://x.com/RoberaGeleta" target="_blank">Robera Geleta</Link> and <Link href="https://x.com/nasm423" target="_blank">Nate Smith</Link> whose work inspired this experiment. The beautiful images used in the demo are by <Link href="https://unsplash.com/@codioful" target="_blank">Codioful</Link>, <Link href="https://unsplash.com/@mymind" target="_blank">mymind</Link>, and <Link href="https://unsplash.com/@seanwsinclair" target="_blank">Sean Sinclair</Link> on Unsplash.

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { experiments } from "@/data/experiments";
 import ExperimentExport from "@/app/lab/[slug]/experiments/ExperimentExport";
 import CustomMDX from "@/components/CustomMDX";
-import ProjectLink from "@/app/lab/[slug]/ProjectLink";
+import ProjectLink from "@/app/lab/[slug]/components/ProjectLink";
 import VideoPreview from "@/app/lab/[slug]/components/VideoPreview";
 import { formatDate } from "@/helpers/date";
 
@@ -82,7 +82,9 @@ export default function Experiment({ params }) {
               <p className="text-neutral-500 text-sm">{formatDate(date)}</p>
             </div>
             <div className="flex justify-end items-center">
-              {type === "external" && <ProjectLink href={href} name={name} />}
+              {href !== null && (
+                <ProjectLink href={href.url} name={name} type={href.type} />
+              )}
             </div>
           </div>
           {type === "internal" ? (
@@ -158,7 +160,7 @@ function PreviousNextSection({ previousExperiment, nextExperiment }) {
             href={`/lab/${previousExperiment.slug}`}
             target="_self"
             className="flex flex-col gap-1 transition-colors duration-150 outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50 ring-offset-8 ring-offset-neutral-200 dark:ring-offset-neutral-925"
-            aria-label="go to previous experiment"
+            aria-label={`go to previous experiment: ${previousExperiment.name}`}
           >
             <span className="text-neutral-500">Previous</span>
             <span className="text-neutral-700 dark:text-neutral-300 font-medium">
@@ -174,7 +176,7 @@ function PreviousNextSection({ previousExperiment, nextExperiment }) {
             href={`/lab/${nextExperiment.slug}`}
             target="_self"
             className="flex flex-col gap-1 text-right transition-colors duration-150 outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50 ring-offset-8 ring-offset-neutral-200 dark:ring-offset-neutral-925"
-            aria-label="go to next experiment"
+            aria-label={`go to next experiment: ${nextExperiment.name}`}
           >
             <span className="text-neutral-500">Next</span>
             <span className="text-neutral-700 dark:text-neutral-300 font-medium">
