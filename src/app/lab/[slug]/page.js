@@ -160,7 +160,7 @@ function PreviousNextSection({ previousExperiment, nextExperiment }) {
             href={`/lab/${previousExperiment.slug}`}
             target="_self"
             className="flex flex-col gap-1 transition-colors duration-150 outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50 ring-offset-8 ring-offset-neutral-200 dark:ring-offset-neutral-925"
-            aria-label="go to previous experiment"
+            aria-label={`go to previous experiment: ${previousExperiment.name}`}
           >
             <span className="text-neutral-500">Previous</span>
             <span className="text-neutral-700 dark:text-neutral-300 font-medium">
@@ -176,7 +176,7 @@ function PreviousNextSection({ previousExperiment, nextExperiment }) {
             href={`/lab/${nextExperiment.slug}`}
             target="_self"
             className="flex flex-col gap-1 text-right transition-colors duration-150 outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50 ring-offset-8 ring-offset-neutral-200 dark:ring-offset-neutral-925"
-            aria-label="go to next experiment"
+            aria-label={`go to next experiment: ${nextExperiment.name}`}
           >
             <span className="text-neutral-500">Next</span>
             <span className="text-neutral-700 dark:text-neutral-300 font-medium">
