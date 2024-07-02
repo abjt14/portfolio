@@ -47,15 +47,15 @@ export default function useCardStyles({
 
     if (activeIndex === index) {
       if (absoluteCardScrollProgress < 0.5) {
-        // we translate the card by 104/120 percent of its width when it is active and the scroll distance is less than half if its width
-        translateX = cardScrollProgress * (breakpoint === "sm" ? -104 : -120);
+        // we translate the card by 108/124 percent of its width when it is active and the scroll distance is less than half if its width
+        translateX = cardScrollProgress * (breakpoint === "sm" ? -108 : -124);
       } else {
-        // we translate the card by 104/120 percent of its width when it is active and the scroll distance is more than half if its width
+        // we translate the card by 108/124 percent of its width when it is active and the scroll distance is more than half if its width
         // we also add a slight offset to the translation so that when the card reaches the final position,
         // it is not completely centered, rather takes its final position as the card next or previous to the new active card
         translateX =
-          Math.sign(cardScrollProgress) * (breakpoint === "sm" ? -104 : -120);
-        translateX += cardScrollProgress * (breakpoint === "sm" ? 104 : 120);
+          Math.sign(cardScrollProgress) * (breakpoint === "sm" ? -108 : -124);
+        translateX += cardScrollProgress * (breakpoint === "sm" ? 108 : 124);
         translateX +=
           -((1 - absoluteCardScrollProgress / cardCount / 4) * 11) *
           (absoluteCardScrollProgress - 0.5) *
