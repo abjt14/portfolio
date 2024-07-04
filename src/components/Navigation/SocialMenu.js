@@ -18,8 +18,8 @@ export default function SocialMenu() {
         <LinkWrapper href="https://codepen.io/abjt14" label="codepen">
           <CodePenIcon />
         </LinkWrapper>
-        <LinkWrapper href="https://www.artstation.com/abjt" label="artstation">
-          <ArtStationIcon />
+        <LinkWrapper href="https://x.com/abjt14" label="x">
+          <XIcon />
         </LinkWrapper>
         <BottomStaticGlare />
       </div>
@@ -127,6 +127,27 @@ function ArtStationIcon() {
     >
       <title>ArtStation</title>
       <path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      className={clsx(
+        "size-4 text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-neutral-50 transition-all duration-150",
+        "drop-shadow-none group-hover:[filter:drop-shadow(0px_0px_4px_rgba(10,_10,_10,_.5))] dark:group-hover:[filter:drop-shadow(0px_0px_4px_rgba(250,250,250,1))]"
+      )}
+      fill="currentColor"
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        transform: "translateZ(0)",
+      }}
+    >
+      <title>X</title>
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
     </svg>
   );
 }
