@@ -4,18 +4,27 @@ export default function MobileSocialLink({ type }) {
   let href = "";
   let label = "";
 
-  if (type === "github") {
-    href = "https://github.com/abjt14";
-    label = "GitHub";
-  } else if (type === "linkedin") {
-    href = "https://www.linkedin.com/in/abjt14/";
-    label = "LinkedIn";
-  } else if (type === "codepen") {
-    href = "https://codepen.io/abjt14";
-    label = "CodePen";
-  } else if (type === "artstation") {
-    href = "https://www.artstation.com/abjt14";
-    label = "ArtStation";
+  switch (type) {
+    case "github":
+      href = "https://github.com/abjt14";
+      label = "GitHub";
+      break;
+    case "linkedin":
+      href = "https://www.linkedin.com/in/abjt14/";
+      label = "LinkedIn";
+      break;
+    case "codepen":
+      href = "https://codepen.io/abjt14";
+      label = "CodePen";
+      break;
+    case "artstation":
+      href = "https://www.artstation.com/abjt14";
+      label = "ArtStation";
+      break;
+    case "x":
+      href = "https://x.com/abjt14";
+      label = "X";
+      break;
   }
 
   return (
@@ -29,6 +38,7 @@ export default function MobileSocialLink({ type }) {
       {type === "linkedin" && <LinkedInIcon />}
       {type === "codepen" && <CodePenIcon />}
       {type === "artstation" && <ArtStationIcon />}
+      {type === "x" && <XIcon />}
     </Link>
   );
 }
@@ -105,6 +115,24 @@ function ArtStationIcon() {
     >
       <title>ArtStation</title>
       <path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      className="size-8 pointer-events-none"
+      fill="currentColor"
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        transform: "translateZ(0)",
+      }}
+    >
+      <title>X</title>
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
     </svg>
   );
 }
