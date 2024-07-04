@@ -208,7 +208,7 @@ export default function Home() {
               <DashedLine direction="vertical" className="top-0 -right-px" />
             </div>
             <div className="aspect-square relative">
-              <MobileSocialLink type="artstation" />
+              <MobileSocialLink type="x" />
             </div>
           </div>
           <div className="hidden lg:block h-32"></div>
