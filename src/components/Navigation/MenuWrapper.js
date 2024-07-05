@@ -4,7 +4,7 @@ export default function MenuWrapper({ children, showOnMobile = true }) {
   return (
     <div
       className={clsx(
-        "bg-neutral-200 dark:bg-neutral-800 p-px rounded-full overflow-hidden relative shadow-sm shadow-neutral-400 dark:shadow-black z-0 shrink-0",
+        "bg-neutral-200 dark:bg-neutral-800 p-px rounded-full overflow-hidden relative shadow-sm shadow-neutral-400 dark:shadow-black z-50 shrink-0",
         showOnMobile ? "block" : "hidden sm:block"
       )}
     >
