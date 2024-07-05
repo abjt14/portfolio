@@ -1,3 +1,4 @@
+import GradientBlur from "./GradientBlur";
 import MainMenu from "./MainMenu";
 import SocialMenu from "./SocialMenu";
 import SoundControl from "./SoundControl";
@@ -10,6 +11,7 @@ export default function Navigation() {
       <SocialMenu />
       <SoundControl />
       <ThemeControl />
+      <GradientBlur />
     </nav>
   );
 }
