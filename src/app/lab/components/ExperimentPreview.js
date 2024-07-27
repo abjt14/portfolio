@@ -10,7 +10,7 @@ export default function ExperimentPreview({ experiments }) {
   if (experiments.type === "internal" || experiments.mdx === true) {
     href = `/lab/${slug}`;
   } else {
-    href = experiments.href;
+    href = experiments.href.url;
     target = "_blank";
     externalIcon = true;
   }
