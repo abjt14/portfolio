@@ -1,18 +1,21 @@
 import Link from "next/link";
 import { formatDate } from "@/helpers/date";
+import clsx from "clsx";
 
 export default function ExperimentPreview({ experiments }) {
-  const { slug, name, preview, date } = experiments;
+  const { slug, name, preview, date, theme } = experiments;
 
   let href = "";
   let target = "_self";
   let externalIcon = false;
   if (experiments.type === "internal" || experiments.mdx === true) {
     href = `/lab/${slug}`;
-  } else {
+  } else if (experiments.type === "external") {
     href = experiments.href.url;
     target = "_blank";
     externalIcon = true;
+  } else {
+    href = null;
   }
   const resolution = {
     width: preview.base.width,
@@ -21,12 +24,7 @@ export default function ExperimentPreview({ experiments }) {
   const { placeholder } = preview.base;
 
   return (
-    <Link
-      prefetch={true}
-      href={href}
-      target={target}
-      className="w-full h-auto group rounded-xl outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
-    >
+    <ExperimentWrapper href={href} target={target}>
       <div className="w-full h-auto p-1 rounded-xl bg-gradient-to-t from-neutral-300 dark:from-neutral-850 to-neutral-200 dark:to-neutral-925 border border-neutral-300 dark:border-neutral-850">
         <div
           className="w-full h-auto relative overflow-hidden rounded-lg"
@@ -54,21 +52,54 @@ export default function ExperimentPreview({ experiments }) {
               backgroundImage: `url(${placeholder})`,
             }}
           />
-          <div className="absolute top-0 left-0 h-full w-full z-30 bg-gradient-to-b opacity-75 from-transparent from-0% to-neutral-925 group-hover:opacity-95 transition-all duration-500" />
+          <div
+            className={clsx(
+              "absolute top-0 left-0 h-full w-full z-30 transition-all duration-500",
+              theme === "dark" &&
+                "bg-gradient-to-b opacity-75 from-transparent from-0% to-neutral-925 group-hover:opacity-95"
+            )}
+          />
           <div className="absolute top-0 left-0 h-full w-full z-40">
-            <div className="p-3 sm:p-4 w-full h-full flex justify-between items-end">
-              <div className="text-xs sm:text-sm text-neutral-300 flex gap-1 justify-start items-center">
+            <div className="p-3 sm:p-4 sm:pb-[0.75rem] w-full h-full flex justify-between items-end">
+              <div
+                className={clsx(
+                  "text-xs sm:text-sm flex gap-1 justify-start items-center",
+                  theme === "dark" ? "text-neutral-300" : "text-neutral-850"
+                )}
+              >
                 <span>{name}</span>
                 {externalIcon && <ExternalIcon />}
               </div>
-              <p className="text-xs sm:text-sm text-neutral-400">
+              <p
+                className={clsx(
+                  "text-xs sm:text-sm",
+                  theme === "dark" ? "text-neutral-400" : "text-neutral-500"
+                )}
+              >
                 {formatDate(date)}
               </p>
             </div>
           </div>
         </div>
       </div>
+    </ExperimentWrapper>
+  );
+}
+
+function ExperimentWrapper({ href, target, children }) {
+  return href ? (
+    <Link
+      prefetch={true}
+      href={href}
+      target={target}
+      className="w-full h-auto group rounded-xl outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50"
+    >
+      {children}
     </Link>
+  ) : (
+    <div className="w-full h-auto group rounded-xl outline-none focus-visible:ring-1 ring-neutral-950 dark:ring-neutral-50">
+      {children}
+    </div>
   );
 }
 
