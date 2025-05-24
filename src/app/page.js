@@ -200,7 +200,7 @@ export default function Home() {
               <DashedLine direction="vertical" className="top-0 -right-px" />
             </div>
             <div className="aspect-square relative">
-              <MobileSocialLink type="linkedin" />
+              <MobileSocialLink type="bluesky" />
               <DashedLine direction="vertical" className="top-0 -right-px" />
             </div>
             <div className="aspect-square relative">

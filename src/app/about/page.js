@@ -86,7 +86,7 @@ function MobileSocialLinks() {
         <MobileSocialLink type="github" />
       </div>
       <div className="aspect-square">
-        <MobileSocialLink type="linkedin" />
+        <MobileSocialLink type="bluesky" />
       </div>
       <div className="aspect-square">
         <MobileSocialLink type="codepen" />

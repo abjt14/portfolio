@@ -9,17 +9,17 @@ export default function SocialMenu() {
         <LinkWrapper href="https://github.com/abjt14" label="github">
           <GithubIcon />
         </LinkWrapper>
-        <LinkWrapper
-          href="https://www.linkedin.com/in/abjt14/"
-          label="linkedin"
-        >
-          <LinkedInIcon />
-        </LinkWrapper>
         <LinkWrapper href="https://codepen.io/abjt14" label="codepen">
           <CodePenIcon />
         </LinkWrapper>
         <LinkWrapper href="https://x.com/abjt14" label="x">
           <XIcon />
+        </LinkWrapper>
+        <LinkWrapper
+          href="https://bsky.app/profile/abjt.bsky.social"
+          label="bluesky"
+        >
+          <BlueskyIcon />
         </LinkWrapper>
         <BottomStaticGlare />
       </div>
@@ -148,6 +148,30 @@ function XIcon() {
     >
       <title>X</title>
       <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  );
+}
+
+function BlueskyIcon() {
+  return (
+    <svg
+      className={clsx(
+        "size-4 text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-neutral-50 transition-all duration-150",
+        "drop-shadow-none group-hover:[filter:drop-shadow(0px_0px_4px_rgba(10,_10,_10,_.5))] dark:group-hover:[filter:drop-shadow(0px_0px_4px_rgba(250,250,250,1))]"
+      )}
+      fill="currentColor"
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        transform: "translateZ(0)",
+      }}
+    >
+      <title>Bluesky</title>
+      <path
+        xmlns="http://www.w3.org/2000/svg"
+        d="M5.202 2.92198C7.9545 4.98748 10.914 9.17698 12 11.424C13.0875 9.17698 16.047 4.98898 18.798 2.92198C20.7825 1.43248 24 0.278976 24 3.94798C24 4.68148 23.58 10.1055 23.334 10.986C22.476 14.046 19.3545 14.8275 16.578 14.355C21.432 15.1815 22.668 17.9175 19.9995 20.655C14.9355 25.851 12.7215 19.35 12.1545 17.685C12.0495 17.379 12 17.235 12 17.358C12 17.2365 11.9505 17.379 11.847 17.685C11.2785 19.35 9.0645 25.851 4.0005 20.655C1.3335 17.9175 2.568 15.18 7.4205 14.355C4.6455 14.8275 1.5225 14.0475 0.666 10.986C0.42 10.1055 0 4.67998 0 3.94798C0 0.278976 3.2175 1.43248 5.202 2.92198Z"
+      />
     </svg>
   );
 }
