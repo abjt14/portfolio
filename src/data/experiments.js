@@ -1,5 +1,25 @@
 export const experiments = [
   {
+    slug: "family-color-picker",
+    name: "Family Color Picker",
+    type: "preview",
+    href: null,
+    preview: {
+      base: {
+        type: "video",
+        width: 1280,
+        height: 720,
+        placeholder:
+          "data:image/webp;base64,UklGRkIIAABXRUJQVlA4WAoAAAAgAAAARwAAJwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggVAYAAJAiAJ0BKkgAKAA",
+      },
+    },
+    date: "2025-01-06",
+    mdx: false,
+    technologies: ["React.js", "Framer Motion", "CSS"],
+    attributes: null,
+    theme: "light",
+  },
+  {
     slug: "card-stack",
     name: "Card Stack",
     type: "internal",
@@ -20,6 +40,7 @@ export const experiments = [
     mdx: true,
     technologies: ["HTML", "CSS", "JavaScript"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "polyrhythmic-rings",
@@ -42,6 +63,7 @@ export const experiments = [
     mdx: true,
     technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "SVG"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "hold-to-submit",
@@ -64,6 +86,7 @@ export const experiments = [
       keyBoardAccessibility: true,
       touchAccessibility: true,
     },
+    theme: "dark",
   },
   {
     slug: "radio-input",
@@ -92,6 +115,7 @@ export const experiments = [
     attributes: {
       keyBoardAccessibility: true,
     },
+    theme: "dark",
   },
   {
     slug: "magnetic-button",
@@ -120,6 +144,7 @@ export const experiments = [
     attributes: {
       pointerDeviceOnly: true,
     },
+    theme: "dark",
   },
   {
     slug: "agamjeet",
@@ -149,6 +174,7 @@ export const experiments = [
       "Prisma",
     ],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "searchlight",
@@ -178,6 +204,7 @@ export const experiments = [
     mdx: true,
     technologies: ["HTML", "CSS"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "laser-progress-beam",
@@ -200,6 +227,7 @@ export const experiments = [
     mdx: false,
     technologies: ["HTML", "CSS"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "border-highlight",
@@ -222,6 +250,7 @@ export const experiments = [
     mdx: false,
     technologies: ["HTML", "CSS"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "bongo-copy-cat",
@@ -244,6 +273,7 @@ export const experiments = [
     mdx: false,
     technologies: ["Rust", "Tauri", "Krita"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "portfolio-v5",
@@ -266,6 +296,7 @@ export const experiments = [
     mdx: false,
     technologies: ["Vue.js", "TypeScript", "Blender", "Mixamo"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "endless-burrito",
@@ -288,6 +319,7 @@ export const experiments = [
     mdx: false,
     technologies: ["HTML", "CSS", "Krita"],
     attributes: null,
+    theme: "dark",
   },
   {
     slug: "portfolio-v4",
@@ -310,5 +342,6 @@ export const experiments = [
     mdx: false,
     technologies: ["Svelte", "Sass", "GSAP"],
     attributes: null,
+    theme: "light",
   },
 ];
