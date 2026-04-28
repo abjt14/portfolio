@@ -56,7 +56,9 @@ export default function ExperimentPreview({ experiments }) {
             className={clsx(
               "absolute top-0 left-0 h-full w-full z-30 transition-all duration-500",
               theme === "dark" &&
-                "bg-gradient-to-b opacity-75 from-transparent from-0% to-neutral-925 group-hover:opacity-95"
+                `bg-gradient-to-b opacity-25 from-transparent from-0% to-neutral-925 ${
+                  href !== null ? "group-hover:opacity-75" : ""
+                }`
             )}
           />
           <div className="absolute top-0 left-0 h-full w-full z-40">
