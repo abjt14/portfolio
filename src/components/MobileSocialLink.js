@@ -25,10 +25,6 @@ export default function MobileSocialLink({ type }) {
       href = "https://x.com/abjt14";
       label = "X";
       break;
-    case "bluesky":
-      href = "https://bsky.app/profile/abjt.bsky.social";
-      label = "Bluesky";
-      break;
   }
 
   return (
@@ -43,7 +39,6 @@ export default function MobileSocialLink({ type }) {
       {type === "codepen" && <CodePenIcon />}
       {type === "artstation" && <ArtStationIcon />}
       {type === "x" && <XIcon />}
-      {type === "bluesky" && <BlueskyIcon />}
     </Link>
   );
 }

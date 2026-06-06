@@ -15,12 +15,6 @@ export default function SocialMenu() {
         <LinkWrapper href="https://x.com/abjt14" label="x">
           <XIcon />
         </LinkWrapper>
-        <LinkWrapper
-          href="https://bsky.app/profile/abjt.bsky.social"
-          label="bluesky"
-        >
-          <BlueskyIcon />
-        </LinkWrapper>
         <BottomStaticGlare />
       </div>
     </MenuWrapper>
