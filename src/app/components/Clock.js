@@ -19,7 +19,7 @@ export default function Clock({ className = "" }) {
     hour12: false,
     minute: "2-digit",
     second: "2-digit",
-    timeZone: "America/Vancouver",
+    timeZone: "Asia/Tokyo",
   });
 
   const hour = raw.slice(0, 2);
@@ -41,10 +41,10 @@ export default function Clock({ className = "" }) {
         <span className="text-neutral-500">:</span>
         <span suppressHydrationWarning>{second}</span>
       </p>
-      <span className="text-neutral-500 block sm:hidden lg:block"> PST</span>
+      <span className="text-neutral-500 block sm:hidden lg:block"> JST</span>
       <span className="text-neutral-500 hidden sm:block lg:hidden">
         {" "}
-        Vancouver
+        Kobe
       </span>
     </div>
   );

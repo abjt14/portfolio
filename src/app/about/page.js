@@ -69,22 +69,19 @@ export default function About() {
 
 function MobileSocialLinks() {
   return (
-    <div className="w-full grid sm:hidden grid-cols-4 relative">
+    <div className="w-full grid sm:hidden grid-cols-3 relative">
       <DashedLine
         direction="horizontal"
         className="top-0 left-1/2 -translate-x-1/2"
       />
       <div className="aspect-square">
+        <MobileSocialLink type="x" />
+      </div>
+      <div className="aspect-square">
         <MobileSocialLink type="github" />
       </div>
       <div className="aspect-square">
-        <MobileSocialLink type="bluesky" />
-      </div>
-      <div className="aspect-square">
         <MobileSocialLink type="codepen" />
-      </div>
-      <div className="aspect-square">
-        <MobileSocialLink type="x" />
       </div>
       <DashedLine
         direction="horizontal"

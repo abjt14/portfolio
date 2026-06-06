@@ -2,10 +2,10 @@ export const data = {
   experience: [
     {
       company: "Aave Labs",
-      role: "Design Engineer",
+      role: "Senior Design Engineer",
       location: "Remote",
       date: "2024 (current)",
-      technologies: ["Next", "Motion", "SCSS", "Web3"],
+      technologies: ["Next", "Motion", "WebGL", "Web3"],
     },
     {
       company: "AvenueHQ",
@@ -49,10 +49,6 @@ export const data = {
     {
       name: "GitHub",
       url: "https://github.com/abjt14",
-    },
-    {
-      name: "bluesky",
-      url: "https://bsky.app/profile/abjt.bsky.social",
     },
     {
       name: "CodePen",
