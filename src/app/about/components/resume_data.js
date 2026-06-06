@@ -51,10 +51,6 @@ export const data = {
       url: "https://github.com/abjt14",
     },
     {
-      name: "bluesky",
-      url: "https://bsky.app/profile/abjt.bsky.social",
-    },
-    {
       name: "CodePen",
       url: "https://codepen.io/abjt14",
     },

@@ -85,7 +85,7 @@ export default function Home() {
           </div>
           <DashedLine direction="horizontal" className="bottom-0 sm:bottom-0" />
         </div>
-        <div className="h-auto w-full flex flex-col sm:grid sm:grid-cols-4 lg:grid-cols-6 gap-0 relative">
+        <div className="h-auto w-full flex flex-col sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-0 relative">
           <div className="h-32 hidden sm:block"></div>
           <div className="h-32 hidden lg:block"></div>
           <div className="block col-span-2 row-span-2 sm:flex items-center p-0.5 relative">
@@ -194,21 +194,17 @@ export default function Home() {
               className="block sm:hidden -bottom-px sm:bottom-0"
             />
           </div>
-          <div className="grid sm:hidden grid-cols-4">
+          <div className="grid sm:hidden grid-cols-3">
+            <div className="aspect-square relative">
+              <MobileSocialLink type="x" />
+            </div>
             <div className="aspect-square relative">
               <MobileSocialLink type="github" />
               <DashedLine direction="vertical" className="top-0 -right-px" />
             </div>
             <div className="aspect-square relative">
-              <MobileSocialLink type="bluesky" />
-              <DashedLine direction="vertical" className="top-0 -right-px" />
-            </div>
-            <div className="aspect-square relative">
               <MobileSocialLink type="codepen" />
               <DashedLine direction="vertical" className="top-0 -right-px" />
-            </div>
-            <div className="aspect-square relative">
-              <MobileSocialLink type="x" />
             </div>
           </div>
           <div className="hidden lg:block h-32"></div>
