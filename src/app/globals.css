@@ -21,3 +21,8 @@
 .no-transition * {
   transition-duration: 0s !important;
 }
+
+/* safari: make composited children respect a rounded overflow-hidden clip */
+.clip-radius {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}

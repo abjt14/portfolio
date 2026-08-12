@@ -4,35 +4,42 @@
   "private": true,
   "packageManager": "pnpm@10.5.2",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "pnpm build:workers && next dev --turbopack",
+    "build": "pnpm build:workers && next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit && tsc -p src/workers --noEmit",
+    "build:workers": "tsc -p src/workers"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.17",
     "@uidotdev/usehooks": "^2.4.1",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "bright": "^0.8.5",
     "clsx": "^2.1.0",
-    "framer-motion": "^11.0.3",
     "geist": "^1.2.2",
     "js-cookie": "^3.0.5",
-    "next": "16.2.6",
+    "motion": "^13.1.0",
+    "next": "16.3.0",
     "next-mdx-remote": "^6.0.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-tweet": "^3.2.1",
     "sharp": "^0.33.2",
+    "shiki": "^4.4.3",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "autoprefixer": "^10.0.1",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "16.3.0",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "typescript": "^6.0.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

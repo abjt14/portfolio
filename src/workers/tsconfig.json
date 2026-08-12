@@ -1,0 +1,21 @@
+// Workers compile separately: `webworker` and `dom` cannot share a `lib`, and
+// Turbopack does not transpile `new Worker(new URL("./x.ts", ...))` -- it
+// copies the source verbatim. Output goes to public/workers/ and is gitignored.
+//
+// Named tsconfig.json (not tsconfig.worker.json) so editors find it when
+// walking up from these files; otherwise they fall back to DOM libs and the
+// webworker reference below conflicts with them.
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["esnext", "webworker"],
+    "types": [],
+    "noEmit": false,
+    "incremental": false,
+    "outDir": "../../public/workers",
+    "rootDir": "."
+  },
+  // restated: the base excludes **/*.worker.ts, which would cancel the include
+  "exclude": [],
+  "include": ["**/*.ts", "**/*.d.ts"]
+}
