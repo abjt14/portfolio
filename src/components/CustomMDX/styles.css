@@ -64,10 +64,41 @@ article p code {
   @apply bg-neutral-300 dark:bg-neutral-800 p-1 rounded-md text-xs font-geistmono font-medium break-keep box-decoration-clone;
 }
 
+/*
+ * Shiki's <pre> ships no padding, overflow or margin of its own, and its
+ * <code> is inline — so the block-level presentation lives entirely here.
+ * `block` on the code is what keeps the inline formatting context (and with
+ * it the line-height) on text-sm rather than inheriting the article's
+ * leading-7; `min-w-fit` widens it to the longest line so the pre's
+ * padding-right survives being scrolled to the end.
+ */
 article pre {
-  @apply !bg-neutral-150 dark:!bg-neutral-900 rounded-xl border border-neutral-250 dark:border-neutral-850;
+  @apply my-4 p-4 overflow-x-auto overscroll-x-contain !bg-neutral-150 dark:!bg-neutral-900 rounded-xl border border-neutral-250 dark:border-neutral-850;
 }
 
 article pre code {
-  @apply text-sm font-geistmono;
+  @apply block min-w-fit text-sm font-geistmono;
+}
+
+/*
+ * With defaultColor: false, shiki emits ONLY custom properties per token
+ * (--shiki-light / --shiki-dark) and no concrete `color`, so both sides need
+ * a rule — omitting the light one leaves light mode unhighlighted.
+ * Keyed off the `dark` class that ThemeProvider toggles on <html>, rather
+ * than prefers-color-scheme, because the theme here is a manual toggle.
+ */
+article .shiki,
+article .shiki span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+html.dark article .shiki,
+html.dark article .shiki span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
 }

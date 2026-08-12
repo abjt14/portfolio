@@ -22,7 +22,7 @@ With React managing the state and Framer Motion handling the smooth transitions,
 
 Each chords is an SVG `<Line />` with a filter that uses an `<feTurbulence />` and an `<feDisplacementMap />` that is triggered when the white circles, lets call them "beads", hit the strings.
 
-```jsx title="jsx"
+```jsx
 <feTurbulence
   type="fractalNoise"
   baseFrequency={baseFrequencyByIndex}

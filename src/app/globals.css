@@ -21,3 +21,17 @@
 .no-transition * {
   transition-duration: 0s !important;
 }
+
+/*
+ * Safari puts <video>, <canvas> and filtered elements on their own compositing
+ * layer, and clips those layers to an ancestor's *rectangle* — the radius is
+ * ignored, so square corners poke out of a `rounded-* overflow-hidden` wrapper.
+ * A mask forces WebKit to composite the subtree as one masked group, which does
+ * respect the radius. Both stops are opaque, so nothing changes visually.
+ *
+ * Caveat: a mask clips the element's own box-shadow too, so keep shadows on a
+ * parent of the masked element (see Navigation/MenuWrapper).
+ */
+.clip-radius {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
