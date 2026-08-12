@@ -60,7 +60,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const savedTheme = (await cookies()).get("color-theme");
-  // the cookie is user-controlled, so validate rather than cast
   const theme: ThemeName = savedTheme?.value === "light" ? "light" : "dark";
 
   return (

@@ -19,14 +19,10 @@ export default function ThemeControl() {
   });
 
   function handleClick() {
-    // Suppress transitions so the palette snaps instead of every
-    // transition-colors element cross-fading at once.
     document.documentElement.classList.add("no-transition");
 
     handleChange();
 
-    // Re-enable on the frame after the theme repaint has landed. Two frames:
-    // the first is scheduled before this commit paints, the second runs after.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         document.documentElement.classList.remove("no-transition");
@@ -119,9 +115,6 @@ function ThemeIcon({ theme }: { theme: ThemeName }) {
               style={{
                 originX: "50%",
                 originY: "50%",
-                // motion 13 defaults SVG transforms to transform-box: fill-box,
-                // which resolves originX/Y against each circle's own bbox and
-                // collapses all six rays onto one point.
                 transformBox: "view-box",
               }}
             />

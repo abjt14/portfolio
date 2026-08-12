@@ -10,32 +10,18 @@ import MagneticButton from "./MagneticButton";
 import RadioInput from "./RadioInput";
 import Searchlight from "./Searchlight";
 
-/**
- * Slugs the data marks as having an inline demo. Derived rather than restated,
- * so the registry below cannot drift from experiments.ts.
- */
 type InternalSlug = Extract<
   (typeof experiments)[number],
   { type: "internal" }
 >["slug"];
 
 export type ExperimentDemo = {
-  /** Loose enough to hold every demo's props, all of which are optional. */
   Component: ComponentType<Record<string, unknown>>;
   theme: SurfaceTheme;
   className?: string;
-  /**
-   * Tag exposed to this slug's MDX body, for pages that embed their own demo
-   * inline. Explicit because a minifier is free to mangle Component.name.
-   */
   mdxTag?: string;
 };
 
-/**
- * Every experiment with an inline demo, and how each is framed. Typed as a
- * total Record over InternalSlug, so adding an `internal` experiment without a
- * demo -- or a demo for a non-internal slug -- is a compile error.
- */
 export const experimentDemos = {
   "card-stack": {
     Component: CardStack,

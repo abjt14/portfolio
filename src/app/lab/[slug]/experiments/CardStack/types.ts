@@ -1,5 +1,3 @@
-// Separate module: importing these from index.tsx would close a cycle with
-// Cards.tsx and hooks/useCardStyles.ts.
 export type CardStackOptionKey =
   | "scrollSnap"
   | "translateX"
@@ -17,7 +15,6 @@ export type CardStackOptions = Record<CardStackOptionKey, CardStackOption>;
 
 export type OptionEntry = [CardStackOptionKey, CardStackOption];
 
-/** Inputs to useCardStyles; VisibleCard forwards exactly these. */
 export type CardStyleParams = {
   cardCount: number;
   globalScrollProgress: number;

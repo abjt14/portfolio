@@ -17,14 +17,12 @@ const columnsAt: Record<Breakpoint, number> = {
 export default function Masonry() {
   const windowBreakpoint = useWindowBreakpoints();
 
-  // nothing to render until the first measurement lands
   if (!windowBreakpoint) return null;
 
   const count = columnsAt[windowBreakpoint];
   return count === 1 ? <SingleColumn /> : <Columns count={count} />;
 }
 
-/** Not a `<Columns count={1} />`: wider gap, no column wrappers. */
 function SingleColumn() {
   return (
     <div className="flex flex-col justify-center items-start gap-4">
@@ -36,7 +34,6 @@ function SingleColumn() {
 }
 
 function Columns({ count }: { count: number }) {
-  // deal the experiments round-robin so each column stays in source order
   const columns = Array.from({ length: count }, (_, column) =>
     experiments.filter((_, index) => index % count === column)
   );

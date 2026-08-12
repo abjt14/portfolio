@@ -22,7 +22,7 @@ export default function MDXVideo(props: MDXVideoProps) {
     >
       <div
         className={clsx(
-          "w-full h-auto rounded-xl border border-neutral-300 dark:border-neutral-850 relative overflow-hidden clip-radius",
+          "w-full h-auto rounded-xl border border-neutral-300 dark:border-neutral-850 relative overflow-hidden",
           props.className ? props.className : ""
         )}
         style={{

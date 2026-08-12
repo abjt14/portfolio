@@ -7,7 +7,6 @@ const surface: Record<SurfaceTheme, string> = {
   both: "border-neutral-300 bg-neutral-250 dark:border-neutral-850 dark:bg-neutral-900",
 };
 
-/** The bordered surface an experiment demo sits in. */
 export default function ExperimentFrame({
   children,
   theme = "both",
@@ -19,7 +18,6 @@ export default function ExperimentFrame({
   theme?: SurfaceTheme;
   className?: string;
   desktopOnly?: boolean;
-  /** Vertical margin. On by default for in-prose use. */
   spacing?: boolean;
 }) {
   return (

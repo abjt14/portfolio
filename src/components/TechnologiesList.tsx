@@ -5,7 +5,6 @@ export default function TechnologiesList({
   label,
 }: {
   technologies: string[];
-  /** Renders a heading above the chips; omit for a bare row. */
   label?: string;
 }) {
   const chips = (

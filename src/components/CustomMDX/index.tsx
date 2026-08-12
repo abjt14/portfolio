@@ -2,8 +2,6 @@ import path from "path";
 import fs from "fs";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 
-// Derived from MDXRemote itself so we do not need to import @mdx-js/react,
-// which is not a direct dependency.
 type MDXComponents = NonNullable<MDXRemoteProps["components"]>;
 import "./styles.css";
 import Link from "next/link";
@@ -35,7 +33,6 @@ const mdxComponents: MDXComponents = {
   Information,
 };
 
-/** Subdirectories of content/. Keeps a user-facing string out of a path join. */
 type ContentType = "lab";
 
 // https://leerob.io/blog/2023#remark-and-rehype
@@ -61,7 +58,6 @@ function getPost(slug: string, type: ContentType) {
   return fs.readFileSync(file, "utf-8");
 }
 
-/** Makes a slug's own demo component available to its MDX body. */
 function addSlugComponents(slug: string): MDXComponents {
   const demo = getExperimentDemo(slug);
   if (!demo?.mdxTag) return mdxComponents;

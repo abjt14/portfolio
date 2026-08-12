@@ -30,8 +30,6 @@ export default function Tooltip({
     },
   });
 
-  // useFocus takes no `delay` option (only useHover does), so the delay that
-  // used to be passed here was being silently ignored.
   const focus = useFocus(context);
 
   const { getReferenceProps, getFloatingProps } = useInteractions([

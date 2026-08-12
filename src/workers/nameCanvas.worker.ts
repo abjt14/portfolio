@@ -40,7 +40,6 @@ class NameCanvas {
   readonly u_timeLocation: WebGLUniformLocation | null;
   readonly u_modeLocation: WebGLUniformLocation | null;
 
-  /** The only mutable piece of state; toggled by a worker message. */
   modeUniform = 0;
 
   private constructor(resources: NameCanvasResources) {
@@ -62,7 +61,6 @@ class NameCanvas {
     this.u_modeLocation = resources.u_modeLocation;
   }
 
-  /** Builds every GL resource up front so each field is readonly. */
   static create(canvas: OffscreenCanvas, isMobile: boolean): NameCanvas {
     canvas.width = !isMobile ? 2304 : 700;
     canvas.height = !isMobile ? 384 : 329;
@@ -115,8 +113,6 @@ class NameCanvas {
 
     nameCanvas.clear();
 
-    // Sampler parameters persist on the texture object and the sampler uniform
-    // never changes, so bind them once rather than per frame.
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, texture2);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);

@@ -42,7 +42,6 @@ export default function ExperimentPreview({
             width={resolution.width}
             height={resolution.height}
             placeholder={placeholder}
-            // lighter than the other video surfaces, deliberately
             placeholderClassName="blur-sm"
             className="w-full h-auto"
           />

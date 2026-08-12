@@ -11,8 +11,6 @@ export default function ProjectLink({
   name: string;
   type: ExperimentHrefType;
 }) {
-  // Exhaustive over ExperimentHrefType, so a new href kind is a compile error
-  // rather than a silently blank label.
   const copy: Record<ExperimentHrefType, { label: string; action: string }> = {
     production: { label: "Production", action: `visit ${name}` },
     codepen: { label: "CodePen", action: `view ${name} on CodePen` },

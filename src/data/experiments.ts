@@ -33,9 +33,7 @@ export type ExperimentAttributes = {
 type ExperimentBase = {
   slug: ExperimentSlug;
   name: string;
-  /** `square` exists on only a few entries -- always guard before using it. */
   preview: { base: PreviewMedia; square?: PreviewMedia };
-  /** ISO "YYYY-MM-DD". */
   date: string;
   mdx: boolean;
   technologies: string[];
@@ -43,10 +41,6 @@ type ExperimentBase = {
   theme: "dark" | "light";
 };
 
-/**
- * Discriminated on `type` so that narrowing to "external" also proves `href`
- * is non-null, which is what the consumers already assume at runtime.
- */
 export type Experiment =
   | (ExperimentBase & { type: "preview"; href: null })
   | (ExperimentBase & {
@@ -470,25 +464,17 @@ const bySlug = Object.fromEntries(
   experiments.map((experiment) => [experiment.slug, experiment])
 ) as Record<ExperimentSlug, Experiment>;
 
-/** Total over ExperimentSlug -- no lookup failure is representable. */
 export function getExperiment(slug: ExperimentSlug): Experiment {
   return bySlug[slug];
 }
 
-/** For untrusted input such as a route param, which is only ever a string. */
 export function findExperiment(slug: string): Experiment | undefined {
   return experiments.find((experiment) => experiment.slug === slug);
 }
 
-/** The href kinds an Experiment can link out to. */
 export type ExperimentHrefType = NonNullable<Experiment["href"]>["type"];
 
-/**
- * Broader than hasInlineDemo: polyrhythmic-rings is `external` yet still has a
- * page, which is what the `|| mdx` clause is for.
- */
 export const hasLabPage = (experiment: Experiment) =>
   experiment.type === "internal" || experiment.mdx;
 
-/** Experiments that have their own /lab/[slug] page, in display order. */
 export const labPageExperiments = experiments.filter(hasLabPage);

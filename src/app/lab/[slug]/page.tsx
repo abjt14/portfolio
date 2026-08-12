@@ -41,7 +41,6 @@ export default async function Experiment(props: PageProps<"/lab/[slug]">) {
     (experiment) => experiment.slug === params.slug
   );
   const experiment = labPageExperiments[index];
-  // unreachable while dynamicParams is false, but it narrows the destructure
   if (!experiment) notFound();
 
   const {

@@ -13,9 +13,6 @@ export default function CardStack({
   children: React.ReactNode;
   options: CardStackOptions;
 }) {
-  // Children arrive as an array of arrays when the parent uses multiple map()
-  // calls, so flatten to index them. Memoised because toArray clones every
-  // child to re-key it, and this re-renders on each scroll event.
   const cardChildren = React.useMemo(
     () => React.Children.toArray(children),
     [children]
@@ -34,7 +31,6 @@ export default function CardStack({
     const handleScroll = () => {
       const { scrollLeft, scrollWidth, clientWidth } = container;
       const scrollableDistance = scrollWidth - clientWidth;
-      // guard the single-card case, where there is nothing to scroll
       const newScrollProgress =
         scrollableDistance > 0 ? scrollLeft / scrollableDistance : 0;
       setScrollProgress(newScrollProgress);
@@ -42,18 +38,8 @@ export default function CardStack({
       // scroll amount per card normalized to a value between 0 and 1
       const relativeScrollPerCard = cardCount > 1 ? 1 / (cardCount - 1) : 1;
 
-      // Move the active index one card at a time until it holds the card nearest
-      // the current scroll position. The handover lands exactly when the
-      // neighbouring card is centred, and that is what keeps rotateY and z-index
-      // continuous across the switch — both flip sign on activeCardScrollProgress,
-      // which is 0 at that moment. Rounding to the nearest card instead hands over
-      // at the half-card point, where those values are at their peak, so every
-      // card visibly snaps to its mirror image mid-scroll.
       setActiveIndex((currentIndex) => {
         let nextIndex = currentIndex;
-        // the relative and normalized scroll positions where the previous and
-        // next card start. Looping (rather than a single step) covers a scroll
-        // that jumps more than one card in a single event.
         while (
           nextIndex > 0 &&
           newScrollProgress <= relativeScrollPerCard * (nextIndex - 1)

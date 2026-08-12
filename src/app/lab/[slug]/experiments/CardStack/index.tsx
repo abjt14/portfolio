@@ -74,9 +74,6 @@ function OptionsControl({
   options: CardStackOptions;
   setOptions: React.Dispatch<React.SetStateAction<CardStackOptions>>;
 }) {
-  // divide the options into rows of 2 entries, so they stack vertically on
-  // desktop and in rows of 2 on mobile. Kept as [key, value] tuples rather
-  // than partial objects so every lookup below is provably present.
   const entries = Object.entries(options) as OptionEntry[];
   const optionRows: OptionEntry[][] = [];
   for (let i = 0; i < entries.length; i += 2) {

@@ -17,7 +17,7 @@ export default function VideoPreview({
     <div
       className={clsx(
         mobileOnly ? "block sm:hidden" : "block",
-        "w-full relative overflow-hidden clip-radius rounded-xl border border-neutral-300 dark:border-neutral-850"
+        "w-full relative overflow-hidden rounded-xl border border-neutral-300 dark:border-neutral-850"
       )}
       style={{
         aspectRatio,

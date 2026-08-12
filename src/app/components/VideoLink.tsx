@@ -14,8 +14,6 @@ export default function VideoLink({
 }) {
   const { name, preview } = getExperiment(slug);
 
-  // `square` only exists on a few experiments, so fall back to `base` rather
-  // than throwing on a slug that has no square variant.
   const media =
     variant === "square" && preview.square ? preview.square : preview.base;
   const { width, height, placeholder } = media;
@@ -37,7 +35,7 @@ export default function VideoLink({
         aspectRatio,
       }}
     >
-      <div className="h-full w-full relative overflow-hidden clip-radius rounded-xl">
+      <div className="h-full w-full relative overflow-hidden rounded-xl">
         <VideoWithPlaceholder
           src={videoSrc}
           width={width}

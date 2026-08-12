@@ -8,8 +8,6 @@ export default function MenuWrapper({
   showOnMobile?: boolean;
 }) {
   return (
-    // The shadow sits out here because `clip-radius` masks the element it's on,
-    // and a mask would clip the shadow away with it.
     <div
       className={clsx(
         "rounded-full relative shadow-sm shadow-neutral-400 dark:shadow-black z-50 shrink-0",

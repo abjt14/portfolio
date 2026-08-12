@@ -5,7 +5,6 @@ import Cookie from "js-cookie";
 
 export type ThemeName = "light" | "dark";
 
-/** A surface that can also render identically in both themes. */
 export type SurfaceTheme = ThemeName | "both";
 
 type ThemeContextValue = {

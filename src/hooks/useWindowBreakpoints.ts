@@ -4,10 +4,6 @@ import React from "react";
 
 export type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 
-/**
- * Returns null until the first resize measurement lands, so callers should
- * compare against a specific breakpoint rather than testing truthiness.
- */
 export default function useWindowBreakpoints({
   isMobile = false,
 }: { isMobile?: boolean } = {}): Breakpoint | null {
